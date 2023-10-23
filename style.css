@@ -13,12 +13,14 @@ body {
     background: linear-gradient(#f4dbfb, #d8dbfe);
 }
 
+/* Ancho del Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 
+/* Background del Scroll*/
 ::-webkit-scrollbar-track {
-    background: #f4dbfb;
+    background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -317,8 +319,8 @@ body {
 .container .right .top .user {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: right;
+    align-items: flex-end;
     gap: 15px;
 }
 
@@ -362,8 +364,8 @@ body {
     border-radius: 10px;
     cursor: pointer;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: right;
+    align-items: flex-end;
 }
 
 .container .right .top .user .arrow span {
@@ -593,6 +595,7 @@ body {
 .container .right main .projectCard .task {
     position: relative;
     width: 100%;
+    
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -693,7 +696,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    grid-row: 1 / 5;
+    grid-row: 1/7;
     grid-column: 2 / 3;
 }
 
@@ -832,25 +835,7 @@ body {
 
 /* myTasks end */
 /* timeline start */
-.container .right main .timeline {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 1);
-    backdrop-filter: blur(5px);
-    border-radius: 20px;
-    box-shadow: rgba(255, 255, 255, 0.5) 35px 35px 68px 0px,
-        inset rgba(255, 255, 255, 0.6) -8px -8px 16px 0px,
-        inset rgb(255, 255, 255) 0px 11px 28px 0px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    grid-row: 5 / 7;
-    grid-column: 2 / 3;
-    padding: 20px;
-    overflow: hidden;
-}
+
 
 .container .right main .timeline .timelineHead {
     position: relative;
@@ -1086,7 +1071,7 @@ body {
 
 /* calendar end */
 /* messages start */
-.container .right main .messages {
+.container .right main .timeline {
     position: relative;
     width: 100%;
     height: 100%;

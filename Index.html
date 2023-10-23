@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Task Dashboard</title>
+    <title>Sync O' task</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -49,7 +50,7 @@
             }
         };
     </script>
-    
+
     <!-- container start -->
     <div class="container">
         <!-- left start -->
@@ -58,7 +59,7 @@
             <header>
                 <!-- logo start -->
                 <div class="logo">
-                    <h2>Nikhil's Code</h2>
+                    <h2>Sync O' Task</h2>
                     <div class="close">
                         <span class="material-symbols-outlined">
                             close
@@ -70,26 +71,10 @@
                     <ul>
                         <li>
                             <a href="#">
-                                <span class="material-symbols-outlined full">
-                                    dashboard
-                                </span>
-                                <span class="title">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
                                 <span class="material-symbols-outlined">
-                                    check_box
+                                    home
                                 </span>
-                                <span class="title">Project</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="material-symbols-outlined">
-                                    group
-                                </span>
-                                <span class="title">My Client</span>
+                                <span class="title">Inicio</span>
                             </a>
                         </li>
                         <li>
@@ -97,23 +82,16 @@
                                 <span class="material-symbols-outlined">
                                     task
                                 </span>
-                                <span class="title">My Task</span>
+                                <span class="title">Mis tareas </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="material-symbols-outlined">
+
                                     chat_bubble
                                 </span>
-                                <span class="title">Message</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="material-symbols-outlined">
-                                    account_balance_wallet
-                                </span>
-                                <span class="title">My Billing</span>
+                                <span class="title">Comentarios</span>
                             </a>
                         </li>
                     </ul>
@@ -121,14 +99,6 @@
                 <!-- nav end -->
             </header>
             <!-- header end -->
-            <!-- upgrade start -->
-            <div class="upgrade">
-                <h4>Upgrade to <bold>PRO</bold> for<br> more features</h4>
-                <div class="upBtn">
-                    <button>Upgrade</button>
-                </div>
-            </div>
-            <!-- upgrade end -->
         </div>
         <!-- left end -->
         <!-- right start -->
@@ -137,27 +107,17 @@
             <div class="top">
                 <!-- searchBx start -->
                 <div class="searchBx">
-                    <h2>Dashboard</h2>
-                    <div class="inputBx">
-                        <span class="material-symbols-outlined searchOpen">
-                            search
-                        </span>
-                        <input type="text" placeholder="Search...">
-                        <span class="material-symbols-outlined searchClose">
-                            close
-                        </span>
-                    </div>
+                    <h2>Inicio - Sync O' Task</h2>
+
                 </div>
                 <!-- searchBx end -->
                 <!-- user start -->
                 <div class="user">
-                    <span class="material-symbols-outlined">
-                        notifications
-                    </span>
+
                     <div class="userImg">
                         <img src="./user.png" alt="user">
                     </div>
-                    <h2>Nikhil's Code<br><span>Administrator</span></h2>
+                    <h2>Usuario<br><span>Administrador</span></h2>
                     <div class="arrow">
                         <span class="material-symbols-outlined">
                             expand_more
@@ -181,7 +141,7 @@
                 <div class="projectCard">
                     <!-- projectTop start -->
                     <div class="projectTop">
-                        <h2>Project Name<br><span>Company Name</span></h2>
+                        <h2>Tarea numero 1<br><span>Casa</span></h2>
                         <div class="projectDots">
                             <span class="material-symbols-outlined">
                                 more_horiz
@@ -192,44 +152,23 @@
                     <!-- projectProgress start -->
                     <div class="projectProgress">
                         <div class="process">
-                            <h2>In Progress</h2>
+                            <h2>En progreso</h2>
                         </div>
                         <div class="priority">
-                            <h2>High Priority</h2>
+                            <h2>Urgente</h2>
                         </div>
                     </div>
                     <!-- projectProgress end -->
-                    <!-- groupImg start -->
-                    <div class="groupImg">
-                        <a href="#">
-                            <img src="./groupImg/img1.jpg" alt="img1">
-                        </a>
-                        <a href="#" style="--left: -10px;">
-                            <img src="./groupImg/img2.jpg" alt="img2">
-                        </a>
-                        <a href="#" style="--left: -20px;">
-                            <img src="./groupImg/img3.jpg" alt="img3">
-                        </a>
-                        <a href="#" style="--left: -30px;">
-                            <img src="./groupImg/img4.jpg" alt="img4">
-                        </a>
-                        <a href="#" style="--left: -40px;">
-                            <img src="./groupImg/img5.jpg" alt="img5">
-                        </a>
-                        <a href="#" style="--left: -50px;">
-                            <span class="number">+3</span>
-                        </a>
-                    </div>
-                    <!-- groupImg end -->
+
                     <!-- task start -->
                     <div class="task">
-                        <h2>Task Done: <bold>35</bold> / 50</h2>
+                        <h2>Avance: <bold>35</bold> / 50</h2>
                         <span class="line"></span>
                     </div>
                     <!-- task end -->
                     <!-- due start -->
                     <div class="due">
-                        <h2>Due Date: 25 August</h2>
+                        <h2>8 dee octubre</h2>
                     </div>
                     <!-- due end -->
                 </div>
@@ -237,47 +176,33 @@
                 <!-- projectCard2 start -->
                 <div class="projectCard projectCard2">
                     <div class="projectTop">
-                        <h2>Project Name<br><span>Company Name</span></h2>
+                        <h2>Tarea numero 2<br><span>Casa</span></h2>
                         <div class="projectDots">
                             <span class="material-symbols-outlined">
                                 more_horiz
                             </span>
                         </div>
+
+                    </div>
+                    <div class="description">
+                        <p>Descripcion de la tarea</p>
                     </div>
                     <div class="projectProgress">
+
                         <div class="process">
-                            <h2>In Progress</h2>
+                            <h2>En progreso</h2>
                         </div>
                         <div class="priority">
-                            <h2>High Priority</h2>
+                            <h2>Urgente</h2>
                         </div>
                     </div>
-                    <div class="groupImg">
-                        <a href="#">
-                            <img src="./groupImg/img1.jpg" alt="img1">
-                        </a>
-                        <a href="#" style="--left: -10px;">
-                            <img src="./groupImg/img2.jpg" alt="img2">
-                        </a>
-                        <a href="#" style="--left: -20px;">
-                            <img src="./groupImg/img3.jpg" alt="img3">
-                        </a>
-                        <a href="#" style="--left: -30px;">
-                            <img src="./groupImg/img4.jpg" alt="img4">
-                        </a>
-                        <a href="#" style="--left: -40px;">
-                            <img src="./groupImg/img5.jpg" alt="img5">
-                        </a>
-                        <a href="#" style="--left: -50px;">
-                            <span class="number">+3</span>
-                        </a>
-                    </div>
+
                     <div class="task">
-                        <h2>Task Done: <bold>35</bold> / 50</h2>
+                        <h2>Avance: <bold>35</bold> / 50</h2>
                         <span class="line"></span>
                     </div>
                     <div class="due">
-                        <h2>Due Date: 25 August</h2>
+                        <h2>10 de octubre</h2>
                     </div>
                 </div>
                 <!-- projectCard2 end -->
@@ -285,7 +210,7 @@
                 <div class="myTasks">
                     <!-- tasksHead start -->
                     <div class="tasksHead">
-                        <h2>My Tasks</h2>
+                        <h2>Mis tareas</h2>
                         <div class="tasksDots">
                             <span class="material-symbols-outlined">
                                 more_horiz
@@ -304,7 +229,7 @@
                                         </span>
                                     </span>
                                     <span class="tasksName">
-                                        My Task 1
+                                        Tarea numero 1
                                     </span>
                                 </span>
                                 <span class="tasksStar full">
@@ -317,7 +242,7 @@
                                 <span class="tasksIconName">
                                     <span class="tasksIcon notDone"></span>
                                     <span class="tasksName">
-                                        My Task 2
+                                        Tarea numero 2
                                     </span>
                                 </span>
                                 <span class="tasksStar half">
@@ -330,24 +255,7 @@
                                 <span class="tasksIconName">
                                     <span class="tasksIcon notDone"></span>
                                     <span class="tasksName">
-                                        My Task 3
-                                    </span>
-                                </span>
-                                <span class="tasksStar half">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon done">
-                                        <span class="material-symbols-outlined">
-                                            check
-                                        </span>
-                                    </span>
-                                    <span class="tasksName tasksLine">
-                                        <underline>My Task 4</underline>
+                                        Tarea numero 3
                                     </span>
                                 </span>
                                 <span class="tasksStar half">
@@ -364,7 +272,24 @@
                                         </span>
                                     </span>
                                     <span class="tasksName tasksLine">
-                                        My Task 5
+                                        <underline>Tarea numero 4</underline>
+                                    </span>
+                                </span>
+                                <span class="tasksStar half">
+                                    <span class="material-symbols-outlined">
+                                        star
+                                    </span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="tasksIconName">
+                                    <span class="tasksIcon done">
+                                        <span class="material-symbols-outlined">
+                                            check
+                                        </span>
+                                    </span>
+                                    <span class="tasksName tasksLine">
+                                        Tarea numero 5
                                     </span>
                                 </span>
                                 <span class="tasksStar full">
@@ -377,7 +302,7 @@
                                 <span class="tasksIconName">
                                     <span class="tasksIcon notDone"></span>
                                     <span class="tasksName">
-                                        My Task 6
+                                        Tarea numero 6
                                     </span>
                                 </span>
                                 <span class="tasksStar full">
@@ -390,7 +315,7 @@
                                 <span class="tasksIconName">
                                     <span class="tasksIcon notDone"></span>
                                     <span class="tasksName">
-                                        My Task 7
+                                        Tarea numero 7
                                     </span>
                                 </span>
                                 <span class="tasksStar half">
@@ -425,7 +350,7 @@
                                         slideshow
                                     </span>
                                     <span class="text">
-                                        Create wireframe
+                                        Tarea 1 parte 10
                                     </span>
                                 </span>
                                 <span class="timelineTime">
@@ -438,7 +363,7 @@
                                         slideshow
                                     </span>
                                     <span class="text">
-                                        Logo Design
+                                        Tarea 1 parte 11
                                     </span>
                                 </span>
                                 <span class="timelineTime">
@@ -451,7 +376,7 @@
                                         slideshow
                                     </span>
                                     <span class="text">
-                                        Dashboard Design
+                                        Tarea 1 parte 12
                                     </span>
                                 </span>
                                 <span class="timelineTime">
@@ -464,7 +389,7 @@
                                         slideshow
                                     </span>
                                     <span class="text">
-                                        Landing Page
+                                        Tarea 2 parte 11
                                     </span>
                                 </span>
                                 <span class="timelineTime">
@@ -480,7 +405,7 @@
                 <div class="calendar">
                     <!-- calendarHead start -->
                     <div class="calendarHead">
-                        <h2>October 2022</h2>
+                        <h2>Octubre 2023</h2>
                         <div class="calendarIcon">
                             <span class="material-symbols-outlined">
                                 chevron_left
@@ -494,13 +419,13 @@
                     <!-- calendarData start -->
                     <div class="calendarData">
                         <ul class="weeks">
-                            <li>Sun</li>
-                            <li>Mon</li>
-                            <li>Tue</li>
-                            <li>Wed</li>
-                            <li>Thu</li>
-                            <li>Fri</li>
-                            <li>Sat</li>
+                            <li>Dom</li>
+                            <li>Lun</li>
+                            <li>Mar</li>
+                            <li>Mie</li>
+                            <li>Jue</li>
+                            <li>Vie</li>
+                            <li>Sab</li>
                         </ul>
                         <ul class="days">
                             <li class="inactive">25</li>
@@ -550,55 +475,7 @@
                     <!-- calendarData end -->
                 </div>
                 <!-- calendar end -->
-                <!-- messages start -->
-                <div class="messages">
-                    <!-- messagesHead start -->
-                    <div class="messagesHead">
-                        <h2>Messages</h2>
-                    </div>
-                    <!-- messagesHead end -->
-                    <!-- messagesUser start -->
-                    <div class="messagesUser">
-                        <div class="messagesUserImg">
-                            <img src="./groupImg/img1.jpg" alt="img1">
-                        </div>
-                        <h2>Marvin McKinney<br><span>Commodo volutpot noc</span></h2>
-                    </div>
-                    <!-- messagesUser end -->
-                    <!-- messagesUser start -->
-                    <div class="messagesUser">
-                        <div class="messagesUserImg">
-                            <img src="./groupImg/img2.jpg" alt="img2">
-                        </div>
-                        <h2>Wade Warren<br><span>Commodo volutpot noc</span></h2>
-                    </div>
-                    <!-- messagesUser end -->
-                    <!-- messagesUser start -->
-                    <div class="messagesUser">
-                        <div class="messagesUserImg">
-                            <img src="./groupImg/img3.jpg" alt="img3">
-                        </div>
-                        <h2>John Cooper<br><span>Commodo volutpot noc</span></h2>
-                    </div>
-                    <!-- messagesUser end -->
-                    <!-- messagesUser start -->
-                    <div class="messagesUser">
-                        <div class="messagesUserImg">
-                            <img src="./groupImg/img4.jpg" alt="img4">
-                        </div>
-                        <h2>Darlene Robertson<br><span>Commodo volutpot noc</span></h2>
-                    </div>
-                    <!-- messagesUser end -->
-                    <!-- messagesUser start -->
-                    <div class="messagesUser">
-                        <div class="messagesUserImg">
-                            <img src="./groupImg/img5.jpg" alt="img5">
-                        </div>
-                        <h2>Kristin Watson<br><span>Commodo volutpot noc</span></h2>
-                    </div>
-                    <!-- messagesUser end -->
-                </div>
-                <!-- messages end -->
+
             </main>
             <!-- main end -->
         </div>
