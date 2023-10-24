@@ -809,6 +809,209 @@ body {
 }
 /* myTasks end */
 
+.container .right main .myCompletedTasks {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blanco);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
+        inset var(--color-shadow-dark) -8px -8px 16px 0px,
+        inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
+    padding: 20px 10px 20px 20px; /*Padding del scrollbar derecho*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    grid-row: 1/7;
+    grid-column: 1 / 3;
+}
+
+.container .right main .myCompletedTasks .tasksHead {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.container .right main .myCompletedTasks .tasksHead h2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    line-height: 18px;
+    color: var(--color-negro);
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.container .right main .myCompletedTasks .tasksHead .tasksDots {
+    position: relative;
+    cursor: pointer;
+}
+
+.container .right main .myCompletedTasks .tasksHead .tasksDots span {
+    color: var(--color-negro);
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.container .right main .myCompletedTasks .tasks {
+    position: relative;
+    padding-right: 10px;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.container .right main .myCompletedTasks .tasks ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.container .right main .myCompletedTasks .tasks ul li {
+    position: relative;
+    width: 100%;
+    height: calc(100% / 7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .right main .myCompletedTasks .tasks ul li::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--color-border);
+}
+
+.container .right main .myCompletedTasks .tasks ul li:last-child::before {
+    width: 0;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName .tasksIcon {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName .tasksIcon.done {
+    color: var(--color-blanco);
+    background: #69bc72;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName .tasksIcon.notDone {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-gris);
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName .tasksName {
+    position: relative;
+    color: var(--color-negro);
+    cursor: pointer;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName .tasksName.tasksLine {
+    color: var(--color-gris);
+    cursor: not-allowed;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksIconName .tasksName.tasksLine::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: rgba(0, 0, 0, .3);
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksStar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksStar.full {
+    color: #f5c75f;
+}
+
+.container .right main .myCompletedTasks .tasks ul li .tasksStar.half {
+    color: #f5c75f;
+}
+
+.container .right main .comments{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blanco);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
+        inset var(--color-shadow-dark) -8px -8px 16px 0px,
+        inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
+    padding: 20px 10px 20px 20px; /*Padding del scrollbar derecho*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    grid-row: 1/7;
+    grid-column: 3 / 3;
+}
+.container .right main .comments .commentHead {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.container .right main .comments .commentHead h2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    line-height: 18px;
+    color: var(--color-negro);
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.container .right main .comments .comment {
+    position: relative;
+    padding-right: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.container .right main .comments .comment p {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 /* timeline start */
 .container .right main .timeline {
     position: relative;
