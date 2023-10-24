@@ -166,7 +166,7 @@ body {
     transition: .3s ease;
 }
 
-.container .left header nav ul li:first-child a,
+.container .left header nav ul li.mili a,
 .container .left header nav ul li a:hover {
     transition: 0s;
     background: var(--color-hover);
@@ -182,7 +182,7 @@ body {
     transition: .3s ease;
 }
 
-.container .left header nav ul li:first-child a::before,
+.container .left header nav ul li.mili a::before,
 .container .left header nav ul li a:hover::before {
     width: 4px;
 }
@@ -198,12 +198,16 @@ body {
     font-size: 1.1em;
 }
 
-.container .left header nav ul li:first-child a .material-symbols-outlined,
-.container .left header nav ul li:first-child a .title,
+.container .left header nav ul li.mili a .material-symbols-outlined,
+.container .left header nav ul li.mili a .title,
 .container .left header nav ul li a:hover .material-symbols-outlined,
 .container .left header nav ul li a:hover .title {
     color: var(--color-controles);
 }
+
+
+
+
 /* nav end */
 /* left end */
 
