@@ -1210,6 +1210,7 @@ body {
     grid-row: 1/7;
     grid-column: 2/3;
     grid-column-end: none;
+    overflow: auto;
 }
 .container .right main .newTasks .newTaskHead {
     position: relative;
@@ -1265,22 +1266,24 @@ body {
     text-align: center;
     min-width: 20%;
     margin-top: 5px;
-    background-color: #C1B3F4;
-    border-color: #C1B3F4;
+    background-color: #5FD7CA;
+    border-color: #5FD7CA;
     min-height: 4%;
     border-radius: 4px;
+    color: #2D2D2D;
 }
 
 .container .right main .newTasks .newTask .send{
     position: relative;
     text-align: center; 
     float: right;
-    min-width: 20%;
-    margin-top: 30px;
+    min-width: 25%;
+    margin-bottom: 20px;
     min-height: 5%;
     background-color: #C1B3F4;
     border-color: #C1B3F4;
     border-radius: 7px;
+    color: #2D2D2D;
 }
 
 /**/
