@@ -2,9 +2,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
-import { 
-    getAuth, 
-    createUserWithEmailAndPassword, 
+import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,28 +24,40 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const auth = getAuth()  
+const auth = getAuth()
+
+const db = getDatabase(app);
 
 // Getting all the objects of html
 var user = document.getElementById("user")
 var password = document.getElementById("password")
 var email = document.getElementById("email")
 
- // making a function for storing data
- window.signup = function(e){
+// making a function for create an authenticator
+window.signup = function (e) {
     e.preventDefault();
     var obj = {
-        user : user.value,
-        password : password.value,
-        email : email.value,
+        user: user.value,
+        password: password.value,
+        email: email.value,
     };
     createUserWithEmailAndPassword(auth, obj.email, obj.password)
-    .then(function(success) {
-        alert("Signup Successfully")
-        window.location.replace('index.html')
-    })
-    .catch(function(err){
-        alert("Error in " + err)
-    });
+        .then(function (success) {
+            alert("Signup Successfully")
+            window.location.replace('index.html')
+        })
+        .catch(function (err) {
+            alert("Error in " + err)
+        });
+    saveData();
     console.log(obj);
- }
+}
+
+// making a function for save data
+function saveData() {
+    set(ref(db, 'user/' + document.getElementById("user").value),
+        {
+            user: document.getElementById("user").value,
+            email: document.getElementById("email").value,
+        })
+}
