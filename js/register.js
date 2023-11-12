@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
 import { 
     getAuth, 
-    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
 } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,26 +23,28 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const auth = getAuth();
+const auth = getAuth()  
 
 // Getting all the objects of html
-// var user = document.getElementById("user");
-var password = document.getElementById("password");
-var email = document.getElementById("user");
+var user = document.getElementById("user")
+var password = document.getElementById("password")
+var email = document.getElementById("email")
 
-window.login = function(e){
+ // making a function for storing data
+ window.signup = function(e){
     e.preventDefault();
     var obj = {
+        user : user.value,
+        password : password.value,
         email : email.value,
-        password : password.value
     };
-    signInWithEmailAndPassword(auth, obj.email, obj.password)
-    .then(function(success){
-        console.log(user.uid)
-        alert("Loggined Successfully")
+    createUserWithEmailAndPassword(auth, obj.email, obj.password)
+    .then(function(success) {
+        alert("Signup Successfully")
+        window.location.replace('index.html')
     })
     .catch(function(err){
-        alert("login error " + err)
-    })
-    console.log(obj)
-}
+        alert("Error in " + err)
+    });
+    console.log(obj);
+ }
