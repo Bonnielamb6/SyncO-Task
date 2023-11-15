@@ -11,47 +11,10 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="js/script.js"></script>
+    
 </head>
 
 <body>
-    <script>
-        let toggle = document.querySelector('.toggle');
-        let left = document.querySelector('.left');
-        let right = document.querySelector('.right');
-        let close = document.querySelector('.close');
-        let body = document.querySelector('body');
-        let searchBx = document.querySelector('.searchBx');
-        let searchOpen = document.querySelector('.searchOpen');
-        let searchClose = document.querySelector('.searchClose');
-
-        toggle.addEventListener('click', () => {
-            toggle.classList.toggle('active');
-            left.classList.toggle('active');
-            right.classList.toggle('overlay');
-            body.style.overflow = 'hidden';
-        });
-        close.onclick = () => {
-            toggle.classList.remove('active');
-            left.classList.remove('active');
-            right.classList.remove('overlay');
-            body.style.overflow = '';
-        };
-        searchOpen.onclick = () => {
-            searchBx.classList.add('active');
-        };
-        searchClose.onclick = () => {
-            searchBx.classList.remove('active');
-        };
-        window.onclick = (e) => {
-            if (e.target == right) {
-                toggle.classList.remove('active');
-                left.classList.remove('active');
-                right.classList.remove('overlay');
-                body.style.overflow = '';
-            }
-        };
-    </script>
-
     <!-- container start -->
     <div class="container">
         <!-- left start -->
@@ -71,7 +34,7 @@
                 <nav>
                     <ul>
                         <li class="mili">
-                            <a href="#" >
+                            <a href="#">
                                 <span class="material-symbols-outlined">
                                     home
                                 </span>
