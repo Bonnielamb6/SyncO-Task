@@ -81,7 +81,7 @@ $(document).ready(function () {
         $("#text_month").text(monthName[month]);
 
         $(".item_day").remove();
-        
+
         for (let i = startDay(); i > 0; i--) {
             $(".container .right main .container_calendar .calendarData .days").append
                 (`<span class="week_days_item item_day prev_days">${getTotalDays(month - 1) - (i - 1)}</span>`);
@@ -129,7 +129,7 @@ $(document).ready(function () {
 
         var numMonthReal = month + 1;
 
-        if (numMonthReal == 1 || numMonthReal == 3 || numMonthReal == 5 || numMonthReal==7|| numMonthReal == 8 ||numMonthReal==10|| numMonthReal == 12) {
+        if (numMonthReal == 1 || numMonthReal == 3 || numMonthReal == 5 || numMonthReal == 7 || numMonthReal == 8 || numMonthReal == 10 || numMonthReal == 12) {
             return 31;
         } else if (numMonthReal == 4 || numMonthReal == 6
             || numMonthReal == 9 || numMonthReal == 11) {
@@ -147,4 +147,28 @@ $(document).ready(function () {
         getPrevMonth();
 
     })
+});
+
+
+//Mandar correo a persona de nueva tarea
+document.addEventListener('DOMContentLoaded', function () {
+
+    sendEmail();
+
+    function sendEmail() {
+        // Obtiene la dirección de correo electrónico del destinatario desde el formulario
+        const toEmail = "edgartrabajos2205@gmail.com";
+
+        // Configura el mensaje predeterminado con la dirección de correo electrónico del destinatario
+        const message = `Ahi te va papu`;
+
+        // Envía el correo electrónico
+        emailjs.send("service_u4l7y3t", "template_7axdjtj", { to_email: toEmail, message })
+            .then(function (response) {
+                console.log("Correo enviado con éxito", response);
+            })
+            .catch(function (error) {
+                console.error("Error al enviar el correo", error);
+            });
+    }
 });
