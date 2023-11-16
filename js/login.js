@@ -39,7 +39,7 @@ window.login = function(e){
     signInWithEmailAndPassword(auth, obj.email, obj.password)
     .then(function(success){
         console.log(user.uid)
-        alert("Loggined Successfully")
+        alert("Logged in Successfully")
     })
     .catch(function(err){
         alert("login error " + err)

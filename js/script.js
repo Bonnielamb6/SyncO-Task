@@ -153,14 +153,10 @@ $(document).ready(function () {
 //Mandar correo a persona de nueva tarea
 document.addEventListener('DOMContentLoaded', function () {
 
-    sendEmail();
 
-    function sendEmail() {
-        // Obtiene la dirección de correo electrónico del destinatario desde el formulario
-        const toEmail = "edgartrabajos2205@gmail.com";
+    //sendEmail("edgartrabajos2205@gmail.com","Esta es una prueba con parametros");
 
-        // Configura el mensaje predeterminado con la dirección de correo electrónico del destinatario
-        const message = `Ahi te va papu`;
+    function sendEmail(toEmail, message) {
 
         // Envía el correo electrónico
         emailjs.send("service_u4l7y3t", "template_7axdjtj", { to_email: toEmail, message })
@@ -170,5 +166,58 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(function (error) {
                 console.error("Error al enviar el correo", error);
             });
+    }
+});
+
+//Crear project cards
+document.addEventListener('DOMContentLoaded', function () {
+
+    createProjectCard();
+
+    function createProjectCard() {
+        const containerProjectCards = document.querySelector("main");
+        if (containerProjectCards) {
+            const newProjectCard = document.createElement("div");
+            newProjectCard.className = "projectCard";
+            newProjectCard.innerHTML = `
+            <div class="projectCard">
+                    
+                    <div class="projectTop">
+                        <h2>${tituloTarea}<br><span>${tag}</span></h2>
+                        <div class="projectDots">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="projectProgress">
+                        <div class="process">
+                            <h2>${progreso}</h2>
+                        </div>
+                        <div class="priority">
+                            <h2>${prioridad}</h2>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <div class="task">
+                        <h2>${descripcionTarea}</h2>
+                        <span class="line"></span>
+                    </div>
+                    
+                    <div class="due">
+                        <h2>${fechaEntrega}</h2>
+                    </div>
+                    
+                </div>
+                
+            `;
+            containerProjectCards.appendChild(newProjectCard);
+        } else {
+            console.log("Error al agregar un projectCard");
+        }
+
     }
 });
