@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Hind Siliguri', sans-serif;
+    font-family: 'Hind Siliguri', sans-serif;
 }
 
 :root {
@@ -392,6 +392,7 @@ body {
     opacity: 1;
     visibility: visible;
 }
+
 /* user end */
 
 
@@ -568,7 +569,7 @@ body {
 .container .right main .projectCard .task {
     position: relative;
     width: 100%;
-    
+
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -664,7 +665,8 @@ body {
     /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
         inset var(--color-shadow-dark) -8px -8px 16px 0px,
         inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
-    padding: 20px 10px 20px 20px; /*Padding del scrollbar derecho*/
+    padding: 20px 10px 20px 20px;
+    /*Padding del scrollbar derecho*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -807,6 +809,7 @@ body {
 .container .right main .myTasks .tasks ul li .tasksStar.half {
     color: #f5c75f;
 }
+
 /* myTasks end */
 
 .container .right main .myCompletedTasks {
@@ -819,13 +822,14 @@ body {
     /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
         inset var(--color-shadow-dark) -8px -8px 16px 0px,
         inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
-    padding: 20px 10px 20px 20px; /*Padding del scrollbar derecho*/
+    padding: 20px 10px 20px 20px;
+    /*Padding del scrollbar derecho*/
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     grid-row: 1/7;
-    
+
 }
 
 .container .right main .myCompletedTasks .tasksHead {
@@ -975,13 +979,14 @@ body {
     /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
         inset var(--color-shadow-dark) -8px -8px 16px 0px,
         inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
-    padding: 20px; /*Padding del scrollbar derecho*/
+    padding: 20px;
+    /*Padding del scrollbar derecho*/
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     grid-row: 1/7;
-    
+
 }
 
 .container .right main .users .userhead {
@@ -1121,7 +1126,7 @@ body {
 
 
 /**/
-.container .right main .comments{
+.container .right main .comments {
     position: relative;
     width: 100%;
     height: 100%;
@@ -1131,7 +1136,8 @@ body {
     /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
         inset var(--color-shadow-dark) -8px -8px 16px 0px,
         inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
-    padding: 20px 10px 20px 20px; /*Padding del scrollbar derecho*/
+    padding: 20px 10px 20px 20px;
+    /*Padding del scrollbar derecho*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1140,6 +1146,7 @@ body {
     grid-column: 2 / 3;
     grid-column-end: none;
 }
+
 .container .right main .comments .commentHead {
     position: relative;
     width: 100%;
@@ -1170,29 +1177,32 @@ body {
     width: 100%;
     height: 100%;
 }
+
 .container .right main .comments textarea {
     position: relative;
     width: 100%;
     height: 100%;
     margin-right: 8px;
-    
+
 }
+
 .container .right main .comments button {
     position: relative;
-    text-align: center; 
+    text-align: center;
     float: right;
     min-width: 20%;
     margin-top: 5px;
-    
+
     min-height: 30px;
     background-color: #C1B3F4;
     border-color: #C1B3F4;
     border-radius: 7px;
 }
+
 /**/
 
 /**/
-.container .right main .newTasks{
+.container .right main .newTasks {
     position: relative;
     width: 100%;
     height: 100%;
@@ -1202,7 +1212,8 @@ body {
     /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
         inset var(--color-shadow-dark) -8px -8px 16px 0px,
         inset rgb(255, 255, 255) 0px 11px 28px 0px;*/
-    padding: 20px; /*Padding del scrollbar derecho*/
+    padding: 20px;
+    /*Padding del scrollbar derecho*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1212,6 +1223,12 @@ body {
     grid-column-end: none;
     overflow: auto;
 }
+
+.container .right main .newTasks form {
+    overflow: auto;
+    margin: none;
+}
+
 .container .right main .newTasks .newTaskHead {
     position: relative;
     width: 100%;
@@ -1230,30 +1247,32 @@ body {
     cursor: pointer;
 }
 
-.container .right main .newTasks .newTask {
+.container .right main .newTasks form {
     position: relative;
     padding-right: 10px;
     width: 100%;
     height: 100%;
 }
 
-.container .right main .newTasks .newTask p {
+.container .right main .newTasks  form p {
     position: relative;
-    background-color: #F0ABD9;
+    background: linear-gradient(var(--color-main1-dark), var(--color-main2-dark));
     padding: 5px 0px 5px 5px;
     border-radius: 5px;
     margin-bottom: 2px;
     margin-top: 5px;
     max-width: 100%;
 }
-.container .right main .newTasks .newTask input {
+
+.container .right main .newTasks  form input {
     position: relative;
     border-color: #E2E2E2;
     margin-top: 12px;
     margin-bottom: 12px;
     border-radius: 4px;
 }
-.container .right main .newTasks .newTask textarea {
+
+.container .right main .newTasks  form textarea {
     position: relative;
     width: 100%;
     margin-top: 12px;
@@ -1261,10 +1280,11 @@ body {
     border-radius: 10px;
     border-color: #CFCFCF;
 }
-.container .right main .newTasks .newTask button {
+
+.container .right main .newTasks  form button {
     position: relative;
     text-align: center;
-    min-width: 20%;
+    min-width: 10%;
     margin-top: 5px;
     background-color: #5FD7CA;
     border-color: #5FD7CA;
@@ -1273,11 +1293,23 @@ body {
     color: #2D2D2D;
 }
 
-.container .right main .newTasks .newTask .send{
+.container .right main .newTasks  form button.selected{
     position: relative;
-    text-align: center; 
+    text-align: center;
+    min-width: 10%;
+    margin-top: 5px;
+    background-color: #47a79d;
+    border-color: #47a79d;
+    min-height: 4%;
+    border-radius: 4px;
+    color: #2D2D2D;
+}
+
+.container .right main .newTasks  form .send {
+    position: relative;
+    text-align: center;
     float: right;
-    min-width: 25%;
+    min-width: 15%;
     margin-bottom: 20px;
     min-height: 5%;
     background-color: #C1B3F4;
@@ -1415,6 +1447,7 @@ body {
 .container .right main .timeline .timelineVideos ul li:first-child .timelineTime {
     color: var(--color-negro);
 }
+
 /* timeline end */
 
 /* calendar start */
@@ -1525,6 +1558,7 @@ body {
     background: var(--color-controles);
     color: var(--color-blanco);
 }
+
 /* calendar end */
 
 /* Responsive */

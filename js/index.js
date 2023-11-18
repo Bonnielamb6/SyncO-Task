@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
         querySnapshot.forEach((doc) => {
             const task = doc.data();
-            
+
             // Crear una lista de etiquetas como una cadena HTML
             const tagsHTML = task.tags.map((tag) => `
                 <span class="badge bg-primary">${tag}</span>
