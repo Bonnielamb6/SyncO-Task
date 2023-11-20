@@ -144,8 +144,8 @@ document.addEventListener('DOMContentLoaded', function () {
             //     nuevaTarea["enviar"].innerText = "Mandar tarea";
             // }
 
-            nuevaTarea.reset();
-            title.focus();
+            //nuevaTarea.reset();
+            //title.focus();
         } catch (error) {
             console.log(error);
         }
