@@ -110,6 +110,9 @@
                         <textarea id="task-description" cols="30" rows="8"></textarea>
                         <p>SubTareas</p>
                         <input type="text" id="subTask">
+                        <div id="subtareas">
+
+                        </div>
                         <p>Prioridad</p>
                         <label>
                             <input type="radio" name="task-priority" value="Urgente" id="urgente"> Urgente
@@ -243,6 +246,49 @@
         const nuevaTarea = document.getElementById("formularioAgregar");
 
         const enviarTareaButton = document.getElementById('enviar');
+        const primerInput = document.getElementById("subTask");
+        const contenedorInputsAdicionales = document.getElementById('subtareas');
+
+        function crearInputAdicional() {
+            const nuevoInput = document.createElement('input');
+            nuevoInput.type = 'text';
+            nuevoInput.placeholder = 'Información adicional';
+            nuevoInput.className = 'inputAdicional';
+            nuevoInput.addEventListener('input', function () {
+                // Al modificar el último input adicional, crear uno nuevo
+                if (esUltimoInputAdicional(nuevoInput)) {
+                    const otroNuevoInput = crearInputAdicional();
+                    contenedorInputsAdicionales.appendChild(otroNuevoInput);
+                }
+            });
+            return nuevoInput;
+        }
+
+        function esUltimoInputAdicional(input) {
+            const hijos = contenedorInputsAdicionales.getElementsByClassName('inputAdicional');
+            return input === hijos[hijos.length - 1];
+        }
+
+        primerInput.addEventListener('input', function () {
+            actualizarInputsAdicionales();
+        });
+
+        function actualizarInputsAdicionales() {
+            // Limpiar el contenedor de inputs adicionales
+            contenedorInputsAdicionales.innerHTML = '';
+
+            // Obtener el valor del primer input
+            const valorPrimerInput = primerInput.value.trim();
+
+            // Verificar si el valor no está vacío
+            if (valorPrimerInput !== '') {
+                // Crear un nuevo input adicional
+                const nuevoInput = crearInputAdicional();
+                contenedorInputsAdicionales.appendChild(nuevoInput);
+            }
+        }
+
+
 
         enviarTareaButton.addEventListener('click', async function () {
             // Tu lógica de envío del formulario aquí
