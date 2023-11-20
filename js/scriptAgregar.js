@@ -1,17 +1,11 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+import {
+    onGetTasks,
+    saveTask,
+    deleteTask,
+    getTask,
+    updateTask,
+} from "./firebase.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyDHzMr6ObPfz7mjF41mgBw0pmE6hZvCNos",
-    authDomain: "sync-o-task.firebaseapp.com",
-    projectId: "sync-o-task",
-    storageBucket: "sync-o-task.appspot.com",
-    messagingSenderId: "697125638171",
-    appId: "1:697125638171:web:e2e317ecb5d2df9c59a8be"
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -133,28 +127,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log(`Titulo: ${taskTitle}, Fecha: ${dueDate}, Tiempo: ${timeBegin}, TiempoFin: ${timeEnd}, Descripcion: ${description}, Subtareas: ${subTask}, Prioridad: ${priority}, Tag: ${tag}`);
 
-        // try {
-        //     if (!editStatus) {
-        //         await saveTask(title.value, description.value, dueDate.value, priority.value, tags);
-        //     } else {
-        //         await updateTask(id, {
-        //             title: title.value,
-        //             description: description.value,
-        //             dueDate: dueDate.value,
-        //             priority: priority.value,
-        //             tags: tags,
-        //         });
+        try {
+            //if (!editStatus) {
+                await saveTask(taskTitle, description, dueDate, priority, tag);
+            // } else {
+            //     await updateTask(id, {
+            //         title: title.value,
+            //         description: description.value,
+            //         dueDate: dueDate.value,
+            //         priority: priority.value,
+            //         tags: tags,
+            //     });
 
-        //         editStatus = false;
-        //         id = "";
-        //         nuevaTarea["btn-task-form"].innerText = "Save";
-        //     }
+            //     editStatus = false;
+            //     id = "";
+            //     nuevaTarea["enviar"].innerText = "Mandar tarea";
+            // }
 
-        //     nuevaTarea.reset();
-        //     title.focus();
-        // } catch (error) {
-        //     console.log(error);
-        // }
+            nuevaTarea.reset();
+            title.focus();
+        } catch (error) {
+            console.log(error);
+        }
 
 
     });
