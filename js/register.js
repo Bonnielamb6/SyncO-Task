@@ -29,17 +29,23 @@ const auth = getAuth()
 const db = getDatabase(app);
 
 // Getting all the objects of html
-var user = document.getElementById("user")
-var password = document.getElementById("password")
 var email = document.getElementById("email")
+var password = document.getElementById("password")
+var username = document.getElementById("username")
+var firstName = document.getElementById("firstName")
+var lastName = document.getElementById("lastName")
+var userType = document.getElementById("userType")
 
 // making a function for create an authenticator
 window.signup = function (e) {
     e.preventDefault();
     var obj = {
-        user: user.value,
-        password: password.value,
         email: email.value,
+        password: password.value,
+        username: username.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        userType: userType.value
     };
     createUserWithEmailAndPassword(auth, obj.email, obj.password)
         .then(function (success) {
@@ -55,9 +61,12 @@ window.signup = function (e) {
 
 // making a function for save data
 function saveData() {
-    set(ref(db, 'user/' + document.getElementById("user").value),
+    set(ref(db, 'user/' + document.getElementById("username").value),
         {
-            user: document.getElementById("user").value,
+            user: document.getElementById("username").value,
             email: document.getElementById("email").value,
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            userType: document.getElementById("userType").value,
         })
 }

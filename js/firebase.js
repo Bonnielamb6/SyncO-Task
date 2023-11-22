@@ -18,13 +18,14 @@
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAxjvd5R8dl4a0qRsjShAOUI-Gt13M50_c",
-    authDomain: "testfirebase-5b6c6.firebaseapp.com",
-    projectId: "testfirebase-5b6c6",
-    storageBucket: "testfirebase-5b6c6.appspot.com",
-    messagingSenderId: "259319193638",
-    appId: "1:259319193638:web:b962f3ad612c69f8fbc6e7"
-    };
+  apiKey: "AIzaSyDHzMr6ObPfz7mjF41mgBw0pmE6hZvCNos",
+  authDomain: "sync-o-task.firebaseapp.com",
+  databaseURL: "https://sync-o-task-default-rtdb.firebaseio.com",
+  projectId: "sync-o-task",
+  storageBucket: "sync-o-task.appspot.com",
+  messagingSenderId: "697125638171",
+  appId: "1:697125638171:web:e2e317ecb5d2df9c59a8be"
+};
     
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
