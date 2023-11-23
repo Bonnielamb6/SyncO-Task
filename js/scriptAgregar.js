@@ -1,4 +1,5 @@
 import {
+    onGetUsers,
     onGetTasks,
     saveTask,
     deleteTask,
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             //if (!editStatus) {
-                await saveTask(taskTitle, description, dueDate, priority, tag);
+            await saveTask(taskTitle, description, dueDate, priority, tag);
             // } else {
             //     await updateTask(id, {
             //         title: title.value,
@@ -153,7 +154,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
+    const usersContainer = document.getElementById("user");
+    //LLENAR LOS CAMPOS DE NOMBRES
+    window.addEventListener("DOMContentLoaded", async (e) => {
+        onGetUsers((querySnapshot) => {
+            usersContainer.innerHTML = "";
+
+            querySnapshot.forEach((doc) => {
+                const user = doc.data();
+
+                usersContainer.innerHTML += `
+                    < span class="userIconName" >
+                        <span class="userName">
+                            ${nombre}
+                        </span>
+                    </span >
+                `;
 
 
+
+            });
+
+        });
+    });
 
 });

@@ -108,8 +108,8 @@
             <!-- top end -->
             <!-- main start -->
             <main>
-                
-                
+
+
                 <!-- myTasks start -->
                 <div class="myTasks">
                     <!-- tasksHead start -->
@@ -124,110 +124,8 @@
                     <!-- tasksHead end -->
                     <!-- tasks start -->
                     <div class="tasks">
-                        <ul>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon done">
-                                        <span class="material-symbols-outlined">
-                                            check
-                                        </span>
-                                    </span>
-                                    <span class="tasksName">
-                                        Tarea numero 1
-                                    </span>
-                                </span>
-                                <span class="tasksStar full">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon notDone"></span>
-                                    <span class="tasksName">
-                                        Tarea numero 2
-                                    </span>
-                                </span>
-                                <span class="tasksStar half">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon notDone"></span>
-                                    <span class="tasksName">
-                                        Tarea numero 3
-                                    </span>
-                                </span>
-                                <span class="tasksStar half">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon done">
-                                        <span class="material-symbols-outlined">
-                                            check
-                                        </span>
-                                    </span>
-                                    <span class="tasksName tasksLine">
-                                        <underline>Tarea numero 4</underline>
-                                    </span>
-                                </span>
-                                <span class="tasksStar half">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon done">
-                                        <span class="material-symbols-outlined">
-                                            check
-                                        </span>
-                                    </span>
-                                    <span class="tasksName tasksLine">
-                                        Tarea numero 5
-                                    </span>
-                                </span>
-                                <span class="tasksStar full">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon notDone"></span>
-                                    <span class="tasksName">
-                                        Tarea numero 6
-                                    </span>
-                                </span>
-                                <span class="tasksStar full">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="tasksIconName">
-                                    <span class="tasksIcon notDone"></span>
-                                    <span class="tasksName">
-                                        Tarea numero 7
-                                    </span>
-                                </span>
-                                <span class="tasksStar half">
-                                    <span class="material-symbols-outlined">
-                                        star
-                                    </span>
-                                </span>
-                            </li>
+                        <ul id="tasksContainer">
+                            
                         </ul>
                     </div>
                     <!-- tasks ens -->
@@ -268,32 +166,6 @@
                                     </span>
                                     <span class="text">
                                         Tarea 1 parte 11
-                                    </span>
-                                </span>
-                                <span class="timelineTime">
-                                    30:00
-                                </span>
-                            </li>
-                            <li>
-                                <span class="videoText">
-                                    <span class="material-symbols-outlined">
-                                        slideshow
-                                    </span>
-                                    <span class="text">
-                                        Tarea 1 parte 12
-                                    </span>
-                                </span>
-                                <span class="timelineTime">
-                                    30:00
-                                </span>
-                            </li>
-                            <li>
-                                <span class="videoText">
-                                    <span class="material-symbols-outlined">
-                                        slideshow
-                                    </span>
-                                    <span class="text">
-                                        Tarea 2 parte 11
                                     </span>
                                 </span>
                                 <span class="timelineTime">
@@ -349,48 +221,57 @@
 
 </body>
 
-<script>
+<script type="module">
 
-document.addEventListener('DOMContentLoaded', function () {
+    import {
+        onGetUsers,
+        onGetTasks,
+        saveTask,
+        deleteTask,
+        getTask,
+        updateTask,
+    } from "/js/firebase.js";
 
-createProjectCard("Tarea 1", "Casa", "50%", "Alta", "Lavar los trastes", "10/20/2023");
+    document.addEventListener('DOMContentLoaded', function () {
 
-function createProjectCard(tituloTarea, tag, progreso, prioridad, descripcionTarea, fechaEntrega, tituloTarea2, tag2, progreso2, prioridad2, descripcionTarea2, fechaEntrega2) {
-    if (tituloTarea == undefined) {
-        tituloTarea = "";
-    }
-    if (tituloTarea2 == undefined) {
-        tituloTarea2 = "";
-    }
-    if (tag == undefined) {
-        tag = "";
-    }
-    if (tag2 == undefined) {
-        tag2 = "";
-    }
-    if (prioridad == undefined) {
-        prioridad = "";
-    }
-    if (prioridad2 == undefined) {
-        prioridad2 = "";
-    }
-    if (descripcionTarea == undefined) {
-        descripcionTarea = "";
-    }
-    if (descripcionTarea2 == undefined) {
-        descripcionTarea2 = "";
-    }
-    if (fechaEntrega == undefined) {
-        fechaEntrega = "Sin limite de entrega";
-    }
-    if (fechaEntrega2 == undefined) {
-        fechaEntrega2 = "Sin limite de entrega";
-    }
-    const containerProjectCards = document.querySelector("main");
-    if (containerProjectCards) {
-        const newProjectCard = document.createElement("div");
-        newProjectCard.className = "projectCard";
-        newProjectCard.innerHTML = `
+        createProjectCard("Tarea 1", "Casa", "50%", "Alta", "Lavar los trastes", "10/20/2023");
+
+        function createProjectCard(tituloTarea, tag, progreso, prioridad, descripcionTarea, fechaEntrega, tituloTarea2, tag2, progreso2, prioridad2, descripcionTarea2, fechaEntrega2) {
+            if (tituloTarea == undefined) {
+                tituloTarea = "";
+            }
+            if (tituloTarea2 == undefined) {
+                tituloTarea2 = "";
+            }
+            if (tag == undefined) {
+                tag = "";
+            }
+            if (tag2 == undefined) {
+                tag2 = "";
+            }
+            if (prioridad == undefined) {
+                prioridad = "";
+            }
+            if (prioridad2 == undefined) {
+                prioridad2 = "";
+            }
+            if (descripcionTarea == undefined) {
+                descripcionTarea = "";
+            }
+            if (descripcionTarea2 == undefined) {
+                descripcionTarea2 = "";
+            }
+            if (fechaEntrega == undefined) {
+                fechaEntrega = "Sin limite de entrega";
+            }
+            if (fechaEntrega2 == undefined) {
+                fechaEntrega2 = "Sin limite de entrega";
+            }
+            const containerProjectCards = document.querySelector("main");
+            if (containerProjectCards) {
+                const newProjectCard = document.createElement("div");
+                newProjectCard.className = "projectCard";
+                newProjectCard.innerHTML = `
         <div class="projectCard">
                 
                 <div class="projectTop">
@@ -421,11 +302,11 @@ function createProjectCard(tituloTarea, tag, progreso, prioridad, descripcionTar
             </div>
             
         `;
-        containerProjectCards.appendChild(newProjectCard);
+                containerProjectCards.appendChild(newProjectCard);
 
-        const newProjectCard2 = document.createElement("div");
-        newProjectCard2.className = "projectCard projectCard2";
-        newProjectCard2.innerHTML = `
+                const newProjectCard2 = document.createElement("div");
+                newProjectCard2.className = "projectCard projectCard2";
+                newProjectCard2.innerHTML = `
         <div class="projectCard">
                 
                 <div class="projectTop">
@@ -456,102 +337,130 @@ function createProjectCard(tituloTarea, tag, progreso, prioridad, descripcionTar
             </div>
             
         `;
-        containerProjectCards.appendChild(newProjectCard2);
+                containerProjectCards.appendChild(newProjectCard2);
 
-    } else {
-        console.log("Error al agregar un projectCard");
-    }
+            } else {
+                console.log("Error al agregar un projectCard");
+            }
 
-}
-});
+        }
+
+        const tasksContainer = document.getElementById("tasksContainer");
+
+        onGetTasks((querySnapshot) => {
+            tasksContainer.innerHTML = ""; 
+
+            querySnapshot.forEach((doc) => {
+                const task = doc.data();
+
+                tasksContainer.innerHTML += `                
+            <li>
+                <span class="tasksIconName">
+                    <span class="tasksIcon notDone"></span>
+                    <span class="tasksName">
+                        ${task.title}
+                    </span>
+                </span>
+            </li>`;
+            });
+
+            
+        });
+    });
 
     //CALENDARIO
-$(document).ready(function () {
-    var monthName = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
-        "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    $(document).ready(function () {
+        var monthName = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
+            "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-    var now = new Date();
-    var day = now.getDate();
-    var month = now.getMonth();
-    var currentMonth = month;
-    var year = now.getFullYear();
+        var now = new Date();
+        var day = now.getDate();
+        var month = now.getMonth();
+        var currentMonth = month;
+        var year = now.getFullYear();
 
 
-    initCalender();
-    console.log(startDay());
+        initCalender();
+        console.log(startDay());
 
-    function initCalender() {
-        console.log(monthName[month]);
-        $("#text_month").text(monthName[month]);
+        function initCalender() {
+            console.log(monthName[month]);
+            $("#text_month").text(monthName[month]);
 
-        $(".item_day").remove();
+            $(".item_day").remove();
 
-        for (let i = startDay(); i > 0; i--) {
-            $(".container .right main .container_calendar .calendarData .days").append
-                (`<span class="week_days_item item_day prev_days">${getTotalDays(month - 1) - (i - 1)}</span>`);
-        }
-
-        for (let i = 1; i <= getTotalDays(month); i++) {
-            if (i == day && month == currentMonth) {
+            for (let i = startDay(); i > 0; i--) {
                 $(".container .right main .container_calendar .calendarData .days").append
-                    (`<span class="week_days_item item_day today">${i}</span>`);
-            } else {
-                $(".container .right main .container_calendar .calendarData .days").append
-                    (`<span class="week_days_item item_day">${i}</span>`);
+                    (`<span class="week_days_item item_day prev_days">${getTotalDays(month - 1) - (i - 1)}</span>`);
+            }
+
+            for (let i = 1; i <= getTotalDays(month); i++) {
+                if (i == day && month == currentMonth) {
+                    $(".container .right main .container_calendar .calendarData .days").append
+                        (`<span class="week_days_item item_day today">${i}</span>`);
+                } else {
+                    $(".container .right main .container_calendar .calendarData .days").append
+                        (`<span class="week_days_item item_day">${i}</span>`);
+                }
             }
         }
-    }
-    function getNextMonth() {
-        if (month !== 11) {
-            month++;
-        } else {
-            year++;
-            month = 0;
+        function getNextMonth() {
+            if (month !== 11) {
+                month++;
+            } else {
+                year++;
+                month = 0;
+            }
+            initCalender();
         }
-        initCalender();
-    }
-    function getPrevMonth() {
-        if (month !== 0) {
-            month--;
-        } else {
-            year--;
-            month = 11;
+        function getPrevMonth() {
+            if (month !== 0) {
+                month--;
+            } else {
+                year--;
+                month = 11;
+            }
+            initCalender();
         }
-        initCalender();
-    }
-    function startDay() {
-        var start = new Date(year, month, 1);
-        return ((start.getDate() - 1) === -1) ? 6 : start.getDay();
-    }
-
-    function leapMonth() {
-        return ((year % 400 === 0) || (year % 4 === 0) && (year % 100 !== 0));
-    }
-
-    function getTotalDays() {
-        if (month === -1) month = 11;
-
-        var numMonthReal = month + 1;
-
-        if (numMonthReal == 1 || numMonthReal == 3 || numMonthReal == 5 || numMonthReal == 7 || numMonthReal == 8 || numMonthReal == 10 || numMonthReal == 12) {
-            return 31;
-        } else if (numMonthReal == 4 || numMonthReal == 6
-            || numMonthReal == 9 || numMonthReal == 11) {
-            return 30;
-        } else {
-            return leapMonth() ? 29 : 28;
+        function startDay() {
+            var start = new Date(year, month, 1);
+            return ((start.getDate() - 1) === -1) ? 6 : start.getDay();
         }
-    }
 
-    $("#next_month").click(function () {
-        getNextMonth();
+        function leapMonth() {
+            return ((year % 400 === 0) || (year % 4 === 0) && (year % 100 !== 0));
+        }
+
+        function getTotalDays() {
+            if (month === -1) month = 11;
+
+            var numMonthReal = month + 1;
+
+            if (numMonthReal == 1 || numMonthReal == 3 || numMonthReal == 5 || numMonthReal == 7 || numMonthReal == 8 || numMonthReal == 10 || numMonthReal == 12) {
+                return 31;
+            } else if (numMonthReal == 4 || numMonthReal == 6
+                || numMonthReal == 9 || numMonthReal == 11) {
+                return 30;
+            } else {
+                return leapMonth() ? 29 : 28;
+            }
+        }
+
+        $("#next_month").click(function () {
+            getNextMonth();
+
+        });
+        $("#last_month").click(function () {
+            getPrevMonth();
+
+        })
+
+
+
+
+
 
     });
-    $("#last_month").click(function () {
-        getPrevMonth();
-
-    })
-});
 
 </script>
 
