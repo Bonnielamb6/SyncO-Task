@@ -66,6 +66,19 @@ export const updateTask = (id, newFields) =>
 
 export const getTasks = () => getDocs(collection(db, "tasks"));
 
+
+/*
+COMO MANDAR A LLAMAR LA FUNCION
+    const priority = "Baja"; // Cambiar el parametro segun la prioridad a filtrar
+    getTasksByPriority(priority)
+      .then((tasks) => {
+        console.log(`Tasks with priority ${priority}: `, tasks);
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      });
+*/
+
 export const getTasksByPriority = async (priority) => {
   try {
     const querySnapshot = await getTasks();

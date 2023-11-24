@@ -5,8 +5,6 @@ import {
     deleteTask,
     getTask,
     updateTask,
-    getTasks,
-    getTasksByPriority
 } from "./firebase.js";
 
 
@@ -106,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     enviarTareaButton.addEventListener('click', async function () {
         // Tu lógica de envío del formulario aquí
-        /*
+
         const radioButtons = document.getElementsByName('task-priority');
 
         let valorSeleccionado = null;
@@ -152,16 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (error) {
             console.log(error);
         }
-        */
 
-        const priority = "Baja"; // Cambiar el parametro segun la prioridad a filtrar
-        getTasksByPriority(priority)
-          .then((tasks) => {
-            console.log(`Tasks with priority ${priority}: `, tasks);
-          })
-          .catch((error) => {
-            console.error("Error: ", error);
-          });
 
     });
 
