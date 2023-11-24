@@ -425,6 +425,7 @@ body {
     align-items: center;
     flex-direction: column;
     grid-row: 1 / 4;
+    overflow: auto;
 }
 
 .container .right main .projectCard .projectTop {
@@ -618,6 +619,237 @@ body {
 }
 
 .container .right main .projectCard .due h2 {
+    padding: 0px 10px;
+    border: 2px solid var(--color-link-hover);
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: var(--color-link-hover);
+}
+
+.container .right mainTasks{
+position: relative;
+    width: 100%;
+    height: calc(100% - 90px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/* projectCard start */
+.container .right mainTasks .projectCard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-blanco);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    /*box-shadow: var(--color-shadow-light) 35px 35px 68px 0px,
+        inset var(--color-shadow-dark) -8px -8px 16px 0px,
+        inset rgb(255, 255, 255) 0px 11px 28px 0px; */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    grid-row: 1 / 4;
+    
+}
+
+.container .right mainTasks .projectCard .projectTop {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .right mainTasks .projectCard .projectTop h2 {
+    color: var(--color-negro);
+    font-size: 1.2em;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.container .right mainTasks .projectCard .projectTop h2 span {
+    color: var(--color-gris);
+    font-size: 0.8em;
+}
+
+.container .right mainTasks .projectCard .projectTop .projectDots {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container .right mainTasks .projectCard .projectTop .projectDots span {
+    color: var(--color-negro);
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.container .right mainTasks .projectCard .projectProgress {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .right mainTasks .projectCard .projectProgress .process {
+    position: relative;
+    padding: 5px 10px;
+    background: var(--color-hover);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container .right mainTasks .projectCard .projectProgress .process h2 {
+    color: var(--color-text-alternative);
+    white-space: nowrap;
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.container .right mainTasks .projectCard .projectProgress .priority {
+    position: relative;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.container .right mainTasks .projectCard .projectProgress .priority::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, -50%);
+    background: #ff0000;
+    border-radius: 50%;
+    box-shadow: 0 0 2px #ff0000,
+        0 0 5px #ff000077;
+}
+
+.container .right mainTasks .projectCard .projectProgress .priority h2 {
+    color: #ff0000;
+    white-space: nowrap;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.container .right mainTasks .projectCard .groupImg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.container .right mainTasks .projectCard .groupImg::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--color-border);
+}
+
+.container .right mainTasks .projectCard .groupImg a {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    left: var(--left);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .right mainTasks .projectCard .groupImg a img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .right mainTasks .projectCard .groupImg a:last-child {
+    border: 3px solid var(--color-gris);
+    border-radius: 50%;
+    background: var(--color-blanco);
+}
+
+.container .right mainTasks .projectCard .groupImg a:last-child span {
+    color: var(--color-gris);
+    font-size: 1.2em;
+}
+
+.container .right mainTasks .projectCard .task {
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.container .right mainTasks .projectCard .task h2 {
+    color: var(--color-gris);
+    font-size: 1em;
+}
+
+.container .right mainTasks .projectCard .task h2 bold {
+    color: var(--color-negro);
+}
+
+.container .right mainTasks .projectCard .task .line {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background: var(--color-border);
+    border-radius: 50px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.container .right mainTasks .projectCard .task .line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: calc(100% - 25%);
+    height: 100%;
+    background: var(--color-controles);
+    z-index: 1;
+    border-radius: 50px;
+}
+
+.container .right mainTasks .projectCard .due {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container .right mainTasks .projectCard .due h2 {
     padding: 0px 10px;
     border: 2px solid var(--color-link-hover);
     border-radius: 5px;
