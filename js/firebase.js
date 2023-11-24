@@ -98,6 +98,49 @@ export const getTasksByPriority = async (priority) => {
   }
 };
 
+export function getAllUsers(usersContainerId) {
+  const usersContainer = document.getElementById(usersContainerId);
+
+  if (!usersContainer) {
+    console.error("No se encontró el contenedor de usuarios.");
+    return;
+  }
+
+  const dbRef = ref(dbLife, 'user'); 
+
+  get(dbRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const users = snapshot.val();
+
+        for (const userId in users) {
+          const username = users[userId].username;
+
+          const liElement = document.createElement("li");
+          liElement.innerHTML = `
+            <span class="userIconName">
+              <span class="userName">
+                ${username}
+              </span>
+            </span>
+          `;
+
+          // Agregar el elemento li al contenedor de usuarios
+          usersContainer.appendChild(liElement);
+        }
+      } else {
+        // Lógica si no hay usuarios
+        console.log("No hay usuarios disponibles.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error al obtener usuarios:", error);
+    });
+}
+
+
+
+
 
 // making a function for create an authenticator
 export function signUp(obj) {

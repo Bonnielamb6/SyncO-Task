@@ -5,6 +5,7 @@ import {
     deleteTask,
     getTask,
     updateTask,
+    getAllUsers
 } from "./firebase.js";
 
 
@@ -154,28 +155,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    const usersContainer = document.getElementById("user");
-    //LLENAR LOS CAMPOS DE NOMBRES
-    // window.addEventListener("DOMContentLoaded", async (e) => {
-    //     onGetUsers((querySnapshot) => {
-    //         usersContainer.innerHTML = "";
-
-    //         querySnapshot.forEach((doc) => {
-    //             const user = doc.data();
-
-    //             usersContainer.innerHTML += `
-    //                 < span class="userIconName" >
-    //                     <span class="userName">
-    //                         ${nombre}
-    //                     </span>
-    //                 </span >
-    //             `;
-
-
-
-    //         });
-
-    //     });
-    // });
-
-});
+    getAllUsers("userList");
+}); 
