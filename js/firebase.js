@@ -116,12 +116,45 @@ export function saveUserData(obj) {
 export function signIn(email, password){
   signInWithEmailAndPassword(auth, email, password)
   .then(function(success){
-      alert("Logged in Successfully")
+      //alert("Logged in Successfully")
+      getUser(email)
   })
   .catch(function(err){
       alert("login error " + err)
   })
 }
+
+export function getUser(email){
+  const dbRef = ref(dbLife);
+
+  get(child(dbRef, 'user')).then((snapshot) => {
+    if(snapshot.exists()){
+      const users = snapshot.val();
+      const userWithEmail = Object.values(users).find(user => user.email === email);
+
+      if (userWithEmail.userType == "administrador") {
+        // Mostrar toda la información del usuario
+        /*
+        alert(`
+          Email: ${userWithEmail.email}
+          First Name: ${userWithEmail.firstName}
+          Last Name: ${userWithEmail.lastName}
+          User Type: ${userWithEmail.userType}
+          Username: ${userWithEmail.username}
+        `); 
+        */
+        window.location.href = 'AgregarTareas.html';
+      } else if (userWithEmail.userType == "usuario") {
+        window.location.href = 'dashboard.html';
+      }
+    } else {
+      alert("Snapshot does not exist");
+    }
+  }).catch(error => {
+    console.error("Error getting user:", error);
+  });
+}
+
 
 
 
