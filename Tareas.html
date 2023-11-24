@@ -124,7 +124,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         onGetTasks((querySnapshot) => {
             const containerProjectCards = document.querySelector("mainTasks");
-            var i = 0;
+            
             querySnapshot.forEach((doc) => {
                 const task = doc.data();
 

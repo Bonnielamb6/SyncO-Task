@@ -872,13 +872,13 @@ position: relative;
 }
 
 .container .right main .projectCard.projectCard2 .projectProgress .priority::before {
-    background: #69bc72;
+    background: #ff0000;
     box-shadow: 0 0 2px #69bc72,
         0 0 5px #69bc7277;
 }
 
 .container .right main .projectCard.projectCard2 .projectProgress .priority h2 {
-    color: #69bc72;
+    color: #ff0000;
 }
 
 .container .right main .projectCard.projectCard2 .task .line::before {
