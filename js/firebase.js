@@ -2,7 +2,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 
-import { getFirestore,
+import {
+  getFirestore,
   collection,
   getDocs,
   onSnapshot,
@@ -10,10 +11,11 @@ import { getFirestore,
   deleteDoc,
   doc,
   getDoc,
-  updateDoc,} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"
+  updateDoc,
+} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"
 
-  import {getDatabase, ref, child, get, set, update, remove} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
 
 
 // Your web app's Firebase configuration
@@ -26,7 +28,7 @@ const firebaseConfig = {
   messagingSenderId: "697125638171",
   appId: "1:697125638171:web:e2e317ecb5d2df9c59a8be"
 };
-    
+
 // Inicializa la aplicación de Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -48,6 +50,8 @@ export const saveTask = (title, description, dueDate, priority, tags) =>
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
 
+export const onGetUsers = (callback) =>
+  onSnapshot(collection(db, "tasks"), callback);
 /**
  * Update an existing Task in Firestore
  * @param {string} id Task ID
@@ -66,22 +70,22 @@ export const getTasks = () => getDocs(collection(db, "tasks"));
 // making a function for create an authenticator
 export function signUp(obj) {
   var objUser = {
-      email: obj.email,
-      password: obj.password,
-      username: obj.username,
-      firstName: obj.firstName,
-      lastName: obj.lastName,
-      userType: obj.userType
+    email: obj.email,
+    password: obj.password,
+    username: obj.username,
+    firstName: obj.firstName,
+    lastName: obj.lastName,
+    userType: obj.userType
   };
   createUserWithEmailAndPassword(auth, objUser.email, objUser.password)
-      .then(function (success) {
-          alert("Signup Successfully")
-          window.location.replace('index.html')
-      })
-      .catch(function (err) {
-          alert("Error in " + err)
-      });
-      saveUserData(objUser);
+    .then(function (success) {
+      alert("Signup Successfully")
+      window.location.replace('index.html')
+    })
+    .catch(function (err) {
+      alert("Error in " + err)
+    });
+  saveUserData(objUser);
   console.log(obj);
 }
 
@@ -103,9 +107,9 @@ export function saveUserData(obj) {
     firstName: objUser.firstName,
     lastName: objUser.lastName,
     userType: objUser.userType,
-  }).then(()=>{
+  }).then(() => {
     window.location.href = 'index.html';
-  }).catch((error)=> {
+  }).catch((error) => {
     alert("Unsuccesful");
     console.log(error);
   })
@@ -113,14 +117,14 @@ export function saveUserData(obj) {
 
 
 // making a function for authenticate an user
-export function signIn(email, password){
+export function signIn(email, password) {
   signInWithEmailAndPassword(auth, email, password)
-  .then(function(success){
+    .then(function (success) {
       alert("Logged in Successfully")
-  })
-  .catch(function(err){
+    })
+    .catch(function (err) {
       alert("login error " + err)
-  })
+    })
 }
 
 
