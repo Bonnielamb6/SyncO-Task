@@ -66,6 +66,25 @@ export const updateTask = (id, newFields) =>
 
 export const getTasks = () => getDocs(collection(db, "tasks"));
 
+export const getTasksByPriority = async (priority) => {
+  try {
+    const querySnapshot = await getTasks();
+
+    // Filtra las tareas por prioridad
+    const tasksWithPriority = querySnapshot.docs
+      .filter((doc) => doc.data().priority === priority)
+      .map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+
+    return tasksWithPriority;
+  } catch (error) {
+    console.error("Error getting tasks by priority: ", error);
+    throw error;
+  }
+};
+
 
 // making a function for create an authenticator
 export function signUp(obj) {
