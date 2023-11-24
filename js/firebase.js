@@ -107,7 +107,6 @@ export function getAllUsers(usersContainerId) {
   }
 
   const dbRef = ref(dbLife, 'user'); 
-
   get(dbRef)
     .then((snapshot) => {
       if (snapshot.exists()) {
@@ -125,11 +124,13 @@ export function getAllUsers(usersContainerId) {
             </span>
           `;
 
-          // Agregar el elemento li al contenedor de usuarios
+          liElement.addEventListener('click', function() {
+            alert(`Usuario clickeado: ${username}`);
+          });
+
           usersContainer.appendChild(liElement);
         }
       } else {
-        // Lógica si no hay usuarios
         console.log("No hay usuarios disponibles.");
       }
     })
@@ -137,6 +138,7 @@ export function getAllUsers(usersContainerId) {
       console.error("Error al obtener usuarios:", error);
     });
 }
+
 
 
 
