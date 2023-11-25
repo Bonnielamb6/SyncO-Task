@@ -44,8 +44,8 @@ export const auth = getAuth(app);
  * @param {string} priority the priority of the Task
  * @param {string} tags the priority of the Task
  */
-export const saveTask = (title, description, dueDate, priority, tags) =>
-  addDoc(collection(db, "tasks"), { title, description, dueDate, priority, tags });
+export const saveTask = (title, description, dueDate, priority, tags, linkedUser) =>
+  addDoc(collection(db, "tasks"), { title, description, dueDate, priority, tags, linkedUser});
 
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
@@ -171,45 +171,87 @@ export const getTasksDueInSevenDays = async () => {
 
 
 
-export function getAllUsers(usersContainerId) {
-  const usersContainer = document.getElementById(usersContainerId);
+export function displayAllUsers(usersContainerId) {
+  return new Promise((resolve, reject) => {
+    const usersContainer = document.getElementById(usersContainerId);
 
+    if (!usersContainer) {
+      console.error("No se encontró el contenedor de usuarios.");
+      reject("No se encontró el contenedor de usuarios.");
+      return;
+    }
+
+    const dbRef = ref(dbLife, 'user');
+    get(dbRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const users = snapshot.val();
+
+          for (const userId in users) {
+            const username = users[userId].username;
+            const email = users[userId].email;
+            const userType = users[userId].userType;
+            if (userType !== "administrador") {
+              const liElement = document.createElement("li");
+              liElement.innerHTML = `
+                <span class="userIconName">
+                  <span class="userName">
+                    ${username}
+                  </span>
+                </span>
+              `;
+
+              usersContainer.appendChild(liElement);
+            }
+          }
+
+          // Resuelve la promesa después de completar la creación de elementos
+          resolve();
+        } else {
+          console.log("No hay usuarios disponibles.");
+          reject("No hay usuarios disponibles.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener usuarios:", error);
+        reject(error);
+      });
+  });
+}
+
+
+export function clickEventAllUsers(usersContainerId, callback) {
+  const usersContainer = document.getElementById(usersContainerId);
   if (!usersContainer) {
     console.error("No se encontró el contenedor de usuarios.");
     return;
   }
 
-  const dbRef = ref(dbLife, 'user'); 
-  get(dbRef)
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const users = snapshot.val();
+  let userEmail;
+  // Selecciona todos los elementos li dentro del contenedor
+  const userListItems = usersContainer.querySelectorAll('li');
 
-        for (const userId in users) {
-          const username = users[userId].username;
+  // Agrega un evento de clic a cada elemento li
+  userListItems.forEach((liElement) => {
+    liElement.addEventListener('click', function() {
+      const username = quitarSaltosYEspacios(liElement.querySelector('.userName').textContent);
+      alert("Usuario seleccionado: " + username);
 
-          const liElement = document.createElement("li");
-          liElement.innerHTML = `
-            <span class="userIconName">
-              <span class="userName">
-                ${username}
-              </span>
-            </span>
-          `;
+      getEmailFromUsername(username)
+        .then((email) => {
+          userEmail = email;
+/*           alert(userEmail); */
 
-          liElement.addEventListener('click', function() {
-            alert(`Usuario clickeado: ${username}`);
-          });
-
-          usersContainer.appendChild(liElement);
-        }
-      } else {
-        console.log("No hay usuarios disponibles.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error al obtener usuarios:", error);
+          // Llama a la función de retorno de llamada con el correo electrónico
+          if (callback) {
+            callback(userEmail);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     });
+  });
 }
 
 
@@ -285,7 +327,6 @@ export function getUser(email){
     if(snapshot.exists()){
       const users = snapshot.val();
       const userWithEmail = Object.values(users).find(user => user.email === email);
-
       if (userWithEmail.userType == "administrador") {
         // Mostrar toda la información del usuario
         /*
@@ -309,6 +350,36 @@ export function getUser(email){
   });
 }
 
+export function getEmailFromUsername(username) {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(dbLife);
+
+    get(child(dbRef, 'user'))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const users = snapshot.val();
+          const userWithEmail = Object.values(users).find(user => user.username === username);
+          if (userWithEmail) {
+            resolve(userWithEmail.email);
+          } else {
+            reject(new Error(`No se encontró un usuario con el nombre de usuario ${username}`));
+          }
+        } else {
+          reject(new Error("Snapshot does not exist"));
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting user:", error);
+        reject(error);
+      });
+  });
+}
+
+
+function quitarSaltosYEspacios(cadena) {
+  // Reemplaza saltos de línea y espacios en blanco con una cadena vacía
+  return cadena.replace(/[\n\r\s]+/g, '');
+}
 
 
 

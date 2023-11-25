@@ -5,10 +5,11 @@ import {
     deleteTask,
     getTask,
     updateTask,
-    getAllUsers,
-    getTasksDueInSevenDays 
+    displayAllUsers,
+    clickEventAllUsers 
 } from "./firebase.js";
 
+let selectedUserEmail;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -107,6 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
     enviarTareaButton.addEventListener('click', async function () {
         // Tu lógica de envío del formulario aquí
 
+        if (selectedUserEmail === undefined) {
+            alert("Debes seleccionar un usuario");
+            return
+        } else {
+            alert("Tarea asignada al correo: " + selectedUserEmail);
+        }
+
         const radioButtons = document.getElementsByName('task-priority');
 
         let valorSeleccionado = null;
@@ -126,17 +134,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const subTask = document.getElementById('subTask').value;
         const priority = valorSeleccionado;
         var tag = document.getElementById("tag").value;
+        const linkedUser = selectedUserEmail;
 
 
         console.log(`Titulo: ${taskTitle}, Fecha: ${dueDate}, Tiempo: ${timeBegin}, TiempoFin: ${timeEnd}, Descripcion: ${description}, Subtareas: ${subTask}, Prioridad: ${priority}, Tag: ${tag}`);
 
         try {
-            await saveTask(taskTitle, description, dueDate, priority, tag);
+            await saveTask(taskTitle, description, dueDate, priority, tag, linkedUser);
         } catch (error) {
             console.log(error);
         }
-
     });
 
-    getAllUsers("userList");
+
+    const usersContainerId = "userList";
+
+    displayAllUsers(usersContainerId).then(() => {
+        clickEventAllUsers("userList", function(userEmail) {
+            selectedUserEmail = userEmail
+          });
+    });
+
 }); 
