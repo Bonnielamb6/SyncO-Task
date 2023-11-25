@@ -5,7 +5,8 @@ import {
     deleteTask,
     getTask,
     updateTask,
-    getAllUsers
+    getAllUsers,
+    getTasksDueInSevenDays 
 } from "./firebase.js";
 
 
@@ -130,28 +131,10 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(`Titulo: ${taskTitle}, Fecha: ${dueDate}, Tiempo: ${timeBegin}, TiempoFin: ${timeEnd}, Descripcion: ${description}, Subtareas: ${subTask}, Prioridad: ${priority}, Tag: ${tag}`);
 
         try {
-            //if (!editStatus) {
             await saveTask(taskTitle, description, dueDate, priority, tag);
-            // } else {
-            //     await updateTask(id, {
-            //         title: title.value,
-            //         description: description.value,
-            //         dueDate: dueDate.value,
-            //         priority: priority.value,
-            //         tags: tags,
-            //     });
-
-            //     editStatus = false;
-            //     id = "";
-            //     nuevaTarea["enviar"].innerText = "Mandar tarea";
-            // }
-
-            //nuevaTarea.reset();
-            //title.focus();
         } catch (error) {
             console.log(error);
         }
-
 
     });
 

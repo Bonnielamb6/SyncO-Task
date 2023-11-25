@@ -69,14 +69,28 @@ export const getTasks = () => getDocs(collection(db, "tasks"));
 
 /*
 COMO MANDAR A LLAMAR LA FUNCION
-    const priority = "Baja"; // Cambiar el parametro segun la prioridad a filtrar
-    getTasksByPriority(priority)
-      .then((tasks) => {
-        console.log(`Tasks with priority ${priority}: `, tasks);
-      })
-      .catch((error) => {
-        console.error("Error: ", error);
-      });
+const priority = "Baja"; // Cambiar el parámetro según la prioridad a filtrar
+        getTasksByPriority(priority)
+          .then((tasks) => {
+            // Obtener solo los primeros dos elementos
+            const firstTwoTasks = tasks.slice(0, 2);
+        
+            firstTwoTasks.forEach((task) => {
+              const taskData = task.data;
+        
+              const title = taskData.title;
+              const description = taskData.description;
+              const dueDate = taskData.dueDate;
+        
+              console.log(`Task ID: ${task.id}`);
+              console.log(`Title: ${title}`);
+              console.log(`Description: ${description}`);
+              console.log(`Due Date: ${dueDate}`);
+            });
+          })
+          .catch((error) => {
+            console.error("Error: ", error);
+          });
 */
 
 export const getTasksByPriority = async (priority) => {
@@ -97,6 +111,65 @@ export const getTasksByPriority = async (priority) => {
     throw error;
   }
 };
+
+
+/*
+COMO MANDAR A LLAMAR LA FUNCION
+            const tasksDueInSevenDays = await getTasksDueInSevenDays();
+        
+            tasksDueInSevenDays.forEach((task) => {
+              const taskData = task.data;
+        
+              const title = taskData.title;
+              const description = taskData.description;
+              const dueDate = taskData.dueDate;
+        
+              console.log(`Task ID: ${task.id}`);
+              console.log(`Title: ${title}`);
+              console.log(`Description: ${description}`);
+              console.log(`Due Date: ${dueDate}`);
+              // ... otras propiedades
+            });
+*/
+
+export const getTasksDueInSevenDays = async () => {
+  try {
+    const querySnapshot = await getTasks();
+
+    // Obtener la fecha actual en GMT-6 (Ciudad de Mexico)
+    const currentDate = new Date();
+    const currentDateTimeCST = new Date(currentDate.toLocaleString("en-US", { timeZone: "America/Belize" }));
+    currentDateTimeCST.setHours(0, 0, 0, 0);
+
+    const dueDateLimit = new Date(currentDateTimeCST);
+    dueDateLimit.setDate(currentDateTimeCST.getDate() + 7);
+    dueDateLimit.setHours(0, 0, 0, 0);
+
+    // Filtrar las tareas que están a 7 días de vencerse
+    const tasksDueInSevenDays = querySnapshot.docs
+      .filter((doc) => {
+        const dueDate = new Date(doc.data().dueDate);
+        dueDate.setDate(dueDate.getDate() + 1);
+        dueDate.setHours(0, 0, 0, 0);
+        //alert("hoy : " + currentDateTimeCST)
+        //alert("tarea : " + dueDate)
+        return dueDate >= currentDateTimeCST && dueDate <= dueDateLimit;
+      })
+      .map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+
+    return tasksDueInSevenDays;
+  } catch (error) {
+    console.error("Error getting tasks due in seven days: ", error);
+    throw error;
+  }
+};
+
+
+
+
 
 export function getAllUsers(usersContainerId) {
   const usersContainer = document.getElementById(usersContainerId);
