@@ -241,32 +241,32 @@
         timelineContainer.appendChild(newTimeline)
     });
 
-    
 
-        const containerProjectCards = document.querySelector("main");
-        const priority = "Urgente"; // Cambiar el parámetro según la prioridad a filtrar
-        getTasksByPriority(priority)
-            .then((tasks) => {
-                // Obtener solo los primeros dos elementos
-                const firstTask = tasks.slice(0, 1);
-                const secondTask = tasks.slice(1, 2);
-                firstTask.forEach((task) => {
 
-                    const taskData = task.data;
-                    const title = taskData.title;
-                    const description = taskData.description;
-                    const dueDate = taskData.dueDate;
-                    const tag = taskData.tags;
-                    const priority = taskData.priority;
+    const containerProjectCards = document.querySelector("main");
+    const priority = "Urgente"; // Cambiar el parámetro según la prioridad a filtrar
+    getTasksByPriority(priority)
+        .then((tasks) => {
+            // Obtener solo los primeros dos elementos
+            const firstTask = tasks.slice(0, 1);
+            const secondTask = tasks.slice(1, 2);
+            firstTask.forEach((task) => {
 
-                    console.log(`Task ID: ${task.id}`);
-                    console.log(`Title: ${title}`);
-                    console.log(`Description: ${description}`);
-                    console.log(`Due Date: ${dueDate}`);
+                const taskData = task.data;
+                const title = taskData.title;
+                const description = taskData.description;
+                const dueDate = taskData.dueDate;
+                const tag = taskData.tags;
+                const priority = taskData.priority;
 
-                    const newProjectCard = document.createElement("div");
-                    newProjectCard.className = "projectCard";
-                    newProjectCard.innerHTML = `
+                console.log(`Task ID: ${task.id}`);
+                console.log(`Title: ${title}`);
+                console.log(`Description: ${description}`);
+                console.log(`Due Date: ${dueDate}`);
+
+                const newProjectCard = document.createElement("div");
+                newProjectCard.className = "projectCard";
+                newProjectCard.innerHTML = `
                     <div class="projectCard">
                     
                         <div class="projectTop">
@@ -297,24 +297,24 @@
                     </div>
                 
                 `;
-                    containerProjectCards.appendChild(newProjectCard);
+                containerProjectCards.appendChild(newProjectCard);
 
 
-                });
+            });
 
 
-                secondTask.forEach((task) => {
-                    console.log(task.data);
-                    const taskData = task.data;
-                    const title = taskData.title;
-                    const description = taskData.description;
-                    const dueDate = taskData.dueDate;
-                    const tag = taskData.tags;
-                    const priority = taskData.priority;
+            secondTask.forEach((task) => {
+                console.log(task.data);
+                const taskData = task.data;
+                const title = taskData.title;
+                const description = taskData.description;
+                const dueDate = taskData.dueDate;
+                const tag = taskData.tags;
+                const priority = taskData.priority;
 
-                    const newProjectCard2 = document.createElement("div");
-                    newProjectCard2.className = "projectCard projectCard2";
-                    newProjectCard2.innerHTML = `
+                const newProjectCard2 = document.createElement("div");
+                newProjectCard2.className = "projectCard projectCard2";
+                newProjectCard2.innerHTML = `
                     <div class="projectCard">
                     
                         <div class="projectTop">
@@ -345,26 +345,26 @@
                     </div>
                 
                 `;
-                    containerProjectCards.appendChild(newProjectCard2);
-                });
-
-            })
-            .catch((error) => {
-                console.error("Error: ", error);
+                containerProjectCards.appendChild(newProjectCard2);
             });
 
+        })
+        .catch((error) => {
+            console.error("Error: ", error);
+        });
 
 
-        const tasksContainer = document.getElementById("tasksContainer");
 
-        onGetTasks((querySnapshot) => {
+    const tasksContainer = document.getElementById("tasksContainer");
 
-            tasksContainer.innerHTML = "";
+    onGetTasks((querySnapshot) => {
 
-            querySnapshot.forEach((doc) => {
-                const task = doc.data();
+        tasksContainer.innerHTML = "";
 
-                tasksContainer.innerHTML += `                
+        querySnapshot.forEach((doc) => {
+            const task = doc.data();
+
+            tasksContainer.innerHTML += `                
             <li>
                 <span class="tasksIconName">
                     <span class="tasksIcon notDone"></span>
@@ -374,11 +374,11 @@
                 </span>
             </li>`;
 
-            });
-
-
         });
-    
+
+
+    });
+
 
     //CALENDARIO
     $(document).ready(function () {

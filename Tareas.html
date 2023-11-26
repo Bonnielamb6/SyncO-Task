@@ -121,33 +121,29 @@
         getTask,
         updateTask,
         getTasksDueInSevenDays,
+        getSortedTasks,
         storage
     } from "/js/firebase.js";
     import { ref, getStorage, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
 
 
     const tasksDueInSevenDays = await getTasksDueInSevenDays();
-    console.log(tasksDueInSevenDays);
+    const tasksSorted = await getSortedTasks();
     const containerProjectCards = document.querySelector("mainTasks");
 
-    tasksDueInSevenDays.forEach((task) => {
-        const taskData = task.data;
+    getSortedTasks()
+        .then((tasks) => {
+            tasks.forEach((task) => {
+                const title = task.title;
+                const description = task.description;
+                const dueDate = task.dueDate;
+                const tags = task.tags;
+                const priority = task.priority;
+                const linkedUser = task.linkedUser;
 
-        const title = taskData.title;
-        const description = taskData.description;
-        const dueDate = taskData.dueDate;
-        const tags = taskData.tags;
-        const priority = taskData.priority;
-        const linkedUser = taskData.linkedUser;
-        console.log(`Task ID: ${task.id}`);
-        console.log(`Title: ${title}`);
-        console.log(`Description: ${description}`);
-        console.log(`Due Date: ${dueDate}`);
-
-
-        const newProjectCard = document.createElement("div");
-        newProjectCard.className = "projectCard";
-        newProjectCard.innerHTML = `
+                const newProjectCard = document.createElement("div");
+                newProjectCard.className = "projectCard";
+                newProjectCard.innerHTML = `
                     <div class="projectCard">
                     
                         <div class="projectTop">
@@ -182,58 +178,66 @@
                     </div>
                 
                 `;
-        containerProjectCards.appendChild(newProjectCard);
+                containerProjectCards.appendChild(newProjectCard);
 
-        const enviarButton = document.getElementById(`enviar-${task.id}`);
-        const fileInput = document.getElementById(`archivo-${task.id}`);
+                const enviarButton = document.getElementById(`enviar-${task.id}`);
+                const fileInput = document.getElementById(`archivo-${task.id}`);
 
-        enviarButton.addEventListener("click", async () => {
-            try {
-                // Obtén una referencia al servicio de almacenamiento de Firebase
-                const storage = getStorage();
+                enviarButton.addEventListener("click", async () => {
+                    try {
+                        // Obtén una referencia al servicio de almacenamiento de Firebase
+                        const storage = getStorage();
 
-                const file = fileInput.files[0];
+                        const file = fileInput.files[0];
 
 
-                if (!file) {
-                    console.error('No se seleccionó ningún archivo.');
-                    return;
-                }
-                console.log(storage);
-                const storageRef = ref(storage, `archivos/${file.name}`);
-                const task = uploadBytes(storageRef, file);
+                        if (!file) {
+                            console.error('No se seleccionó ningún archivo.');
+                            return;
+                        }
+                        console.log(storage);
+                        const storageRef = ref(storage, `archivos/${file.name}`);
+                        const task = uploadBytes(storageRef, file);
 
-                task
-                    .then((snapshot) => {
-                        // Maneja el progreso de carga (opcional)
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log(`Progreso de carga: ${progress}%`);
-                    })
-                    .catch((error) => {
-                        // Maneja errores durante la carga
-                        console.error('Error al subir el archivo:', error);
-                    })
-                    .finally(async () => {
-                        // La carga se ha completado con éxito
-                        console.log('Archivo subido con éxito');
-
-                        // Puedes acceder a la URL del archivo almacenado
-                        const downloadURL = await getDownloadURL(storageRef);
-
-                        // Guarda la información en la base de datos Firestore
-                        saveTaskImage(title, description, dueDate, priority, tags, linkedUser, downloadURL)
-                            .then((docRef) => {
-                                console.log(`Documento añadido con ID: ${docRef.id}`);
+                        task
+                            .then((snapshot) => {
+                                // Maneja el progreso de carga (opcional)
+                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                console.log(`Progreso de carga: ${progress}%`);
                             })
                             .catch((error) => {
-                                console.error('Error al añadir documento: ', error);
+                                // Maneja errores durante la carga
+                                console.error('Error al subir el archivo:', error);
+                            })
+                            .finally(async () => {
+                                // La carga se ha completado con éxito
+                                console.log('Archivo subido con éxito');
+
+                                // Puedes acceder a la URL del archivo almacenado
+                                const downloadURL = await getDownloadURL(storageRef);
+
+                                // Guarda la información en la base de datos Firestore
+                                saveTaskImage(title, description, dueDate, priority, tags, linkedUser, downloadURL)
+                                    .then((docRef) => {
+                                        console.log(`Documento añadido con ID: ${docRef.id}`);
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error al añadir documento: ', error);
+                                    });
                             });
-                    });
-            } catch (error) {
-                console.error('Ocurrió un error:', error);
-            }
+                    } catch (error) {
+                        console.error('Ocurrió un error:', error);
+                    }
+                });
+
+                // Haz algo con los datos, por ejemplo, imprímelos en la consola
+                console.log(`Title: ${title}, Description: ${description}, Due Date: ${dueDate}`);
+            });
+        })
+        .catch((error) => {
+            console.error('Error al obtener tareas ordenadas:', error);
         });
-    });
+
 </script>
 
 </html>

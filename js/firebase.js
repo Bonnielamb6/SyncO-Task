@@ -10,6 +10,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  orderBy,
   getDoc,
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"
@@ -144,6 +145,23 @@ COMO MANDAR A LLAMAR LA FUNCION
             });
 */
 
+export function getSortedTasks() {
+  const eventosRef = collection(db, 'tasks');
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      const querySnapshot = await getDocs(eventosRef);
+      const tasks = querySnapshot.docs.map(doc => doc.data());
+
+      // Ordenar los documentos por dueDate en orden descendente
+      const sortedTasks = tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+
+      resolve(sortedTasks);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 export const getTasksDueInSevenDays = async () => {
   try {
     const querySnapshot = await getTasks();

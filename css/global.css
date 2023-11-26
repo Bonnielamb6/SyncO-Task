@@ -412,7 +412,6 @@ body {
 .container .right main .projectCard {
     position: relative;
     width: 100%;
-    height: 100%;
     background-color: var(--color-blanco);
     backdrop-filter: blur(5px);
     border-radius: 20px;

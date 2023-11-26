@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             await saveTask(taskTitle, description, dueDate, priority, tag, linkedUser);
-            sendEmail(linkedUser, taskTitle);
+            //sendEmail(linkedUser, taskTitle);
         } catch (error) {
             console.log(error);
         }
