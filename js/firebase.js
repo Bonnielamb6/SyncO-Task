@@ -54,6 +54,9 @@ export const saveTaskImage = (title, description, dueDate, priority, tags, linke
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
 
+export const onGetDoneTasks = (callback) =>
+  onSnapshot(collection(db, "doneTasks"), callback);
+
 export const onGetUsers = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
 /**
@@ -69,6 +72,7 @@ export const updateTask = (id, newFields) =>
   updateDoc(doc(db, "tasks", id), newFields);
 
 export const getTasks = () => getDocs(collection(db, "tasks"));
+export const getDoneTasks = () => getDocs(collection(db, "doneTasks"));
 
 
 /*

@@ -94,7 +94,7 @@
                 <div class="comments">
                     <div class="commentHead">
                         <h2>Dejar un comentario</h2>
-                        
+
 
                     </div>
 
@@ -112,10 +112,10 @@
                     <!-- tasksHead end -->
                     <!-- tasks start -->
                     <div class="user">
-                        <ul>
+                        <ul id="users">
                             <li>
                                 <span class="userIconName">
-                                    
+
                                     <span class="userName">
                                         Juan
                                     </span>
@@ -127,47 +127,9 @@
                                         Pepe
                                     </span>
                                 </span>
-                                
+
                             </li>
-                            <li>
-                                <span class="userIconName">
-                                    <span class="userName">
-                                        Antonio
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="userIconName">
-                                    
-                                    <span class="userName">
-                                        <underline>Manuel</underline>
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="userIconName">
-                                    
-                                    <span class="userName">
-                                        Adriana
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="userIconName">
-                                    
-                                    <span class="userName">
-                                        Maria
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="userIconName">
-                                    <span class="userName">
-                                        Federico
-                                    </span>
-                                </span>
-                                
-                            </li>
+
                         </ul>
                     </div>
                     <!-- user end -->
@@ -182,5 +144,43 @@
     </div>
     <!-- container end -->
 </body>
+<script type="module">
+    import {
+        onGetUsers,
+        onGetTasks,
+        onGetDoneTasks,
+        saveTask,
+        deleteTask,
+        getTask,
+        updateTask,
+        getTasksByPriority,
+        getTasksDueInSevenDays
+    } from "/js/firebase.js";
+
+    const tasksContainer = document.getElementById("users");
+
+    onGetDoneTasks((querySnapshot) => {
+
+        tasksContainer.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+            const task = doc.data();
+
+            tasksContainer.innerHTML += `                
+        <li>
+            <span class="tasksIconName">
+                <span class="tasksIcon notDone"></span>
+                    <span class="tasksName">
+                        ${task.title}
+                        <img src="${task.linkedUser}" alt="Imagen de tarea ${task.title}" width="80" height="80">
+                    </span>
+            </span>
+        </li>`;
+
+        });
+
+
+    });
+</script>
 
 </html>
