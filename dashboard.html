@@ -203,6 +203,7 @@
         saveTask,
         deleteTask,
         getTask,
+        getSortedTasks,
         updateTask,
         getTasksByPriority,
         getTasksDueInSevenDays,
@@ -214,33 +215,42 @@
     console.log(tasksDueInSevenDays);
     const timelineContainer = document.getElementById("timelineContainer");
 
-    tasksDueInSevenDays.forEach((task) => {
-        const taskData = task.data;
+    const tasksSorted = await getSortedTasks();
 
-        const title = taskData.title;
-        const description = taskData.description;
-        const dueDate = taskData.dueDate;
-        const tags = taskData.tags;
-        const priority = taskData.priority;
+    getSortedTasks()
+        .then((tasks) => {
+            tasks.forEach((task) => {
+                console.log(task.id);
+                const title = task.title;
+                const description = task.description;
+                const dueDate = task.dueDate;
+                const tags = task.tags;
+                const priority = task.priority;
+                const linkedUser = task.linkedUser;
 
-        const newTimeline = document.createElement("li");
-        newTimeline.innerHTML = `
-            <span class="videoText">
-                <span class="material-symbols-outlined">
-                    slideshow
+                const newTimeline = document.createElement("li");
+                newTimeline.innerHTML = `
+                <span class="videoText">
+                    <span class="material-symbols-outlined">
+                        slideshow
+                    </span>
+                    <span class="text">
+                        ${title}
+                    </span>
                 </span>
-                <span class="text">
-                    ${title}
+                <span class="timelineTime">
+                    ${dueDate}
                 </span>
-            </span>
-            <span class="timelineTime">
-                ${dueDate}
-            </span>
                             
                             
-        `;
-        timelineContainer.appendChild(newTimeline)
-    });
+            `;
+                timelineContainer.appendChild(newTimeline)
+
+            });
+        })
+        .catch((error) => {
+            console.error('Error al obtener tareas ordenadas:', error);
+        });
 
 
 
