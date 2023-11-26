@@ -38,6 +38,9 @@ export const dbLife = getDatabase(app);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
+window.currentUserEmail = null;
+
+
 /**
  * Save a New Task in Firestore
  * @param {string} title the title of the Task
@@ -52,8 +55,23 @@ export const saveTask = (title, description, dueDate, priority, tags, linkedUser
 export const saveTaskImage = (title, description, dueDate, priority, tags, linkedUser, urlWork) =>
   addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser, urlWork });
 
-export const onGetTasks = (callback) =>
-  onSnapshot(collection(db, "tasks"), callback);
+// Modifica la función onGetTasks para aceptar el correo electrónico del usuario
+export const onGetTasks = (userEmail, callback) => {
+  onSnapshot(collection(db, "tasks"), (snapshot) => {
+    const tasksList = [];
+    snapshot.forEach((doc) => {
+      const taskData = doc.data();
+      // Filtra las tareas por el correo electrónico del usuario actual
+      if (taskData.linkedUser === userEmail) {
+        tasksList.push({
+          id: doc.id,
+          title: taskData.title,
+        });
+      }
+    });
+    callback(tasksList);
+  });
+};
 
 export const onGetDoneTasks = (callback) =>
   onSnapshot(collection(db, "doneTasks"), callback);
@@ -343,6 +361,8 @@ export function signIn(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then(function (success) {
       //alert("Logged in Successfully")
+      /* window.currentUserEmail = email; */
+      sessionStorage.setItem("currentUserItem", email);
       getUser(email)
     })
     .catch(function (err) {
@@ -411,6 +431,9 @@ function quitarSaltosYEspacios(cadena) {
   return cadena.replace(/[\n\r\s]+/g, '');
 }
 
+export function getCurrentUserEmail() {
+  return window.currentUserEmail;
+}
 
 
 

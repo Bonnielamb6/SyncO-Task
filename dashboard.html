@@ -205,7 +205,8 @@
         getTask,
         updateTask,
         getTasksByPriority,
-        getTasksDueInSevenDays
+        getTasksDueInSevenDays,
+        getCurrentUserEmail
     } from "/js/firebase.js";
 
 
@@ -357,27 +358,30 @@
 
     const tasksContainer = document.getElementById("tasksContainer");
 
-    onGetTasks((querySnapshot) => {
+    const userEmail = sessionStorage.getItem("currentUserItem");
 
-        tasksContainer.innerHTML = "";
+    if (userEmail === null) {
+        alert("aaaaaaaaaaa");
+    } else {
+        onGetTasks(userEmail, (tasksList) => {
+            tasksContainer.innerHTML = "";
 
-        querySnapshot.forEach((doc) => {
-            const task = doc.data();
-
-            tasksContainer.innerHTML += `                
-            <li>
-                <span class="tasksIconName">
-                    <span class="tasksIcon notDone"></span>
-                    <span class="tasksName">
-                        ${task.title}
-                    </span>
-                </span>
-            </li>`;
-
+            tasksList.forEach((task) => {
+                tasksContainer.innerHTML += `                
+    <li>
+        <span class="tasksIconName">
+            <span class="tasksIcon notDone"></span>
+            <span class="tasksName">
+                ${task.title}
+            </span>
+        </span>
+    </li>`;
+            });
         });
+    }
 
 
-    });
+
 
 
     //CALENDARIO
