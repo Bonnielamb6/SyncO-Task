@@ -218,151 +218,157 @@
     const tasksSorted = await getSortedTasks();
 
     getSortedTasks()
-        .then((tasks) => {
-            tasks.forEach((task) => {
+    .then((tasks) => {
+        tasks.forEach((task) => {
+            const linkedUser = task.linkedUser;
+
+            if (linkedUser === sessionStorage.getItem("currentUserItem")) {
                 console.log(task.id);
                 const title = task.title;
                 const description = task.description;
                 const dueDate = task.dueDate;
                 const tags = task.tags;
                 const priority = task.priority;
-                const linkedUser = task.linkedUser;
 
                 const newTimeline = document.createElement("li");
                 newTimeline.innerHTML = `
-                <span class="videoText">
-                    <span class="material-symbols-outlined">
-                        slideshow
+                    <span class="videoText">
+                        <span class="material-symbols-outlined">
+                            slideshow
+                        </span>
+                        <span class="text">
+                            ${title}
+                        </span>
                     </span>
-                    <span class="text">
-                        ${title}
+                    <span class="timelineTime">
+                        ${dueDate}
                     </span>
-                </span>
-                <span class="timelineTime">
-                    ${dueDate}
-                </span>
-                            
-                            
-            `;
-                timelineContainer.appendChild(newTimeline)
+                `;
 
-            });
-        })
-        .catch((error) => {
-            console.error('Error al obtener tareas ordenadas:', error);
+                timelineContainer.appendChild(newTimeline);
+            }
         });
+    })
+    .catch((error) => {
+        console.error('Error al obtener tareas ordenadas:', error);
+    });
+
 
 
 
     const containerProjectCards = document.querySelector("main");
     const priority = "Urgente"; // Cambiar el parámetro según la prioridad a filtrar
     getTasksByPriority(priority)
-        .then((tasks) => {
-            // Obtener solo los primeros dos elementos
-            const firstTask = tasks.slice(0, 1);
-            const secondTask = tasks.slice(1, 2);
-            firstTask.forEach((task) => {
+    .then((tasks) => {
+    // Obtener solo los primeros dos elementos
+    const firstTask = tasks.slice(0, 1);
+    const secondTask = tasks.slice(1, 2);
 
-                const taskData = task.data;
-                const title = taskData.title;
-                const description = taskData.description;
-                const dueDate = taskData.dueDate;
-                const tag = taskData.tags;
-                const priority = taskData.priority;
+    firstTask.forEach((task) => {
+        const taskData = task.data;
+        const linkedUser = taskData.linkedUser;
 
-                console.log(`Task ID: ${task.id}`);
-                console.log(`Title: ${title}`);
-                console.log(`Description: ${description}`);
-                console.log(`Due Date: ${dueDate}`);
+        if (linkedUser === sessionStorage.getItem("currentUserItem")) {
+            const title = taskData.title;
+            const description = taskData.description;
+            const dueDate = taskData.dueDate;
+            const tag = taskData.tags;
+            const priority = taskData.priority;
 
-                const newProjectCard = document.createElement("div");
-                newProjectCard.className = "projectCard";
-                newProjectCard.innerHTML = `
-                    <div class="projectCard">
+            console.log(`Task ID: ${task.id}`);
+            console.log(`Title: ${title}`);
+            console.log(`Description: ${description}`);
+            console.log(`Due Date: ${dueDate}`);
+
+            const newProjectCard = document.createElement("div");
+            newProjectCard.className = "projectCard";
+            newProjectCard.innerHTML = `
+                <div class="projectCard">
+                
+                    <div class="projectTop">
+                        <h2>${title}<br><span>${tag}</span></h2>
+                        <div class="projectDots">
+                            <span class="material-symbols-outlined">
+                                more_horiz
+                            </span>
+                        </div>
+                    </div>
                     
-                        <div class="projectTop">
-                            <h2>${title}<br><span>${tag}</span></h2>
-                            <div class="projectDots">
-                                <span class="material-symbols-outlined">
-                                    more_horiz
+                    <div class="projectProgress">
+                        <div class="priority">
+                            <h2>${priority}</h2>
+                        </div>
+                    </div>
+                
+
+                
+                    <div class="task">
+                        <h2>${description}</h2>
+                    </div>
+                
+                    <div class="due">
+                        <h2>${dueDate}</h2>
+                    </div>
+                
+                </div>
+            
+            `;
+            containerProjectCards.appendChild(newProjectCard);
+        }
+    });
+
+    secondTask.forEach((task) => {
+        const taskData = task.data;
+        const linkedUser = taskData.linkedUser;
+
+        if (linkedUser === sessionStorage.getItem("currentUserItem")) {
+            console.log(task.data);
+            const title = taskData.title;
+            const description = taskData.description;
+            const dueDate = taskData.dueDate;
+            const tag = taskData.tags;
+            const priority = taskData.priority;
+
+            const newProjectCard2 = document.createElement("div");
+            newProjectCard2.className = "projectCard projectCard2";
+            newProjectCard2.innerHTML = `
+                <div class="projectCard">
+                
+                    <div class="projectTop">
+                        <h2>${title}<br><span>${tag}</span></h2>
+                        <div class="projectDots">
+                            <span class="material-symbols-outlined">
+                                more_horiz
                                 </span>
-                            </div>
                         </div>
-                        
-                        <div class="projectProgress">
-                            <div class="priority">
-                                <h2>${priority}</h2>
-                            </div>
-                        </div>
-                    
-
-                    
-                        <div class="task">
-                            <h2>${description}</h2>
-                        </div>
-                    
-                        <div class="due">
-                            <h2>${dueDate}</h2>
-                        </div>
-                    
                     </div>
                 
-                `;
-                containerProjectCards.appendChild(newProjectCard);
-
-
-            });
-
-
-            secondTask.forEach((task) => {
-                console.log(task.data);
-                const taskData = task.data;
-                const title = taskData.title;
-                const description = taskData.description;
-                const dueDate = taskData.dueDate;
-                const tag = taskData.tags;
-                const priority = taskData.priority;
-
-                const newProjectCard2 = document.createElement("div");
-                newProjectCard2.className = "projectCard projectCard2";
-                newProjectCard2.innerHTML = `
-                    <div class="projectCard">
-                    
-                        <div class="projectTop">
-                            <h2>${title}<br><span>${tag}</span></h2>
-                            <div class="projectDots">
-                                <span class="material-symbols-outlined">
-                                    more_horiz
-                                    </span>
-                            </div>
+                    <div class="projectProgress">
+                        <div class="priority">
+                            <h2>${priority}</h2>
                         </div>
-                    
-                        <div class="projectProgress">
-                            <div class="priority">
-                                <h2>${priority}</h2>
-                            </div>
-                        </div>
-                    
-
-                    
-                        <div class="task">
-                            <h2>${description}</h2>
-                        </div>
-                    
-                        <div class="due">
-                            <h2>${dueDate}</h2>
-                        </div>
-                    
                     </div>
                 
-                `;
-                containerProjectCards.appendChild(newProjectCard2);
-            });
 
-        })
-        .catch((error) => {
-            console.error("Error: ", error);
-        });
+                
+                    <div class="task">
+                        <h2>${description}</h2>
+                    </div>
+                
+                    <div class="due">
+                        <h2>${dueDate}</h2>
+                    </div>
+                
+                </div>
+            
+            `;
+            containerProjectCards.appendChild(newProjectCard2);
+        }
+    });
+})
+.catch((error) => {
+    console.error("Error: ", error);
+});
 
 
 
