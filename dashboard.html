@@ -145,33 +145,7 @@
                     <!-- timelineHead end -->
                     <!-- timelineVideos start -->
                     <div class="timelineVideos">
-                        <ul>
-                            <li>
-                                <span class="videoText">
-                                    <span class="material-symbols-outlined full">
-                                        slideshow
-                                    </span>
-                                    <span class="text">
-                                        Tarea 1 parte 10
-                                    </span>
-                                </span>
-                                <span class="timelineTime">
-                                    32:54
-                                </span>
-                            </li>
-                            <li>
-                                <span class="videoText">
-                                    <span class="material-symbols-outlined">
-                                        slideshow
-                                    </span>
-                                    <span class="text">
-                                        Tarea 1 parte 11
-                                    </span>
-                                </span>
-                                <span class="timelineTime">
-                                    30:00
-                                </span>
-                            </li>
+                        <ul id="timelineContainer">
                         </ul>
                     </div>
                     <!-- timelineVideos end -->
@@ -230,12 +204,44 @@
         deleteTask,
         getTask,
         updateTask,
-        getTasksByPriority
+        getTasksByPriority,
+        getTasksDueInSevenDays
     } from "/js/firebase.js";
 
 
+    const tasksDueInSevenDays = await getTasksDueInSevenDays();
+    console.log(tasksDueInSevenDays);
+    const timelineContainer = document.getElementById("timelineContainer");
 
-    document.addEventListener('DOMContentLoaded', function () {
+    tasksDueInSevenDays.forEach((task) => {
+        const taskData = task.data;
+
+        const title = taskData.title;
+        const description = taskData.description;
+        const dueDate = taskData.dueDate;
+        const tags = taskData.tags;
+        const priority = taskData.priority;
+
+        const newTimeline = document.createElement("li");
+        newTimeline.innerHTML = `
+            <span class="videoText">
+                <span class="material-symbols-outlined">
+                    slideshow
+                </span>
+                <span class="text">
+                    ${title}
+                </span>
+            </span>
+            <span class="timelineTime">
+                ${dueDate}
+            </span>
+                            
+                            
+        `;
+        timelineContainer.appendChild(newTimeline)
+    });
+
+    
 
         const containerProjectCards = document.querySelector("main");
         const priority = "Urgente"; // Cambiar el parámetro según la prioridad a filtrar
@@ -373,7 +379,7 @@
 
         });
         //DOM final
-    });
+    
 
     //CALENDARIO
     $(document).ready(function () {

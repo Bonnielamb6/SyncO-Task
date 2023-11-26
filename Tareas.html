@@ -119,22 +119,35 @@
         deleteTask,
         getTask,
         updateTask,
+        getTasksDueInSevenDays
     } from "/js/firebase.js";
 
-    document.addEventListener('DOMContentLoaded', function () {
-        onGetTasks((querySnapshot) => {
-            const containerProjectCards = document.querySelector("mainTasks");
-            
-            querySnapshot.forEach((doc) => {
-                const task = doc.data();
+    const tasksDueInSevenDays = await getTasksDueInSevenDays();
+    console.log(tasksDueInSevenDays);
+    const containerProjectCards = document.querySelector("mainTasks");
 
-                const newProjectCard = document.createElement("div");
-                newProjectCard.className = "projectCard";
-                newProjectCard.innerHTML = `
+    tasksDueInSevenDays.forEach((task) => {
+        const taskData = task.data;
+
+        const title = taskData.title;
+        const description = taskData.description;
+        const dueDate = taskData.dueDate;
+        const tags = taskData.tags;
+        const priority = taskData.priority;
+
+        console.log(`Task ID: ${task.id}`);
+        console.log(`Title: ${title}`);
+        console.log(`Description: ${description}`);
+        console.log(`Due Date: ${dueDate}`);
+
+
+        const newProjectCard = document.createElement("div");
+        newProjectCard.className = "projectCard";
+        newProjectCard.innerHTML = `
                     <div class="projectCard">
                     
                         <div class="projectTop">
-                            <h2>${task.title}<br><span>${task.tags}</span></h2>
+                            <h2>${title}<br><span>${tags}</span></h2>
                             <div class="projectDots">
                                 <span class="material-symbols-outlined">
                                     more_horiz
@@ -144,31 +157,31 @@
                     
                         <div class="projectProgress">
                             <div class="priority">
-                                <h2>${task.priority}</h2>
+                                <h2>${priority}</h2>
                             </div>
                         </div>
                     
 
                     
                         <div class="task">
-                            <h2>${task.description}</h2>
+                            <h2>${description}</h2>
                         </div>
                     
                         <div class="due">
-                            <h2>${task.dueDate}</h2>
+                            <h2>${dueDate}</h2>
                         </div>
                     
                     </div>
                 
                 `;
-                containerProjectCards.appendChild(newProjectCard);
+        containerProjectCards.appendChild(newProjectCard);
 
-
-
-            });
-        });
 
     });
+
+
+
+
 </script>
 
 </html>
