@@ -16,7 +16,7 @@ import {
 
 import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";  
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
 
 
 // Your web app's Firebase configuration
@@ -46,7 +46,10 @@ export const storage = getStorage(app);
  * @param {string} tags the priority of the Task
  */
 export const saveTask = (title, description, dueDate, priority, tags, linkedUser) =>
-  addDoc(collection(db, "tasks"), { title, description, dueDate, priority, tags, linkedUser});
+  addDoc(collection(db, "tasks"), { title, description, dueDate, priority, tags, linkedUser });
+
+export const saveTaskImage = (title, description, dueDate, priority, tags, linkedUser) =>
+  addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser });
 
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
@@ -234,14 +237,14 @@ export function clickEventAllUsers(usersContainerId, callback) {
 
   // Agrega un evento de clic a cada elemento li
   userListItems.forEach((liElement) => {
-    liElement.addEventListener('click', function() {
+    liElement.addEventListener('click', function () {
       const username = quitarSaltosYEspacios(liElement.querySelector('.userName').textContent);
       alert("Usuario seleccionado: " + username);
 
       getEmailFromUsername(username)
         .then((email) => {
           userEmail = email;
-/*           alert(userEmail); */
+          /*           alert(userEmail); */
 
           // Llama a la función de retorno de llamada con el correo electrónico
           if (callback) {
@@ -312,20 +315,20 @@ export function saveUserData(obj) {
 // making a function for authenticate an user
 export function signIn(email, password) {
   signInWithEmailAndPassword(auth, email, password)
-  .then(function(success){
+    .then(function (success) {
       //alert("Logged in Successfully")
       getUser(email)
-  })
-  .catch(function(err){
+    })
+    .catch(function (err) {
       alert("login error " + err)
     })
 }
 
-export function getUser(email){
+export function getUser(email) {
   const dbRef = ref(dbLife);
 
   get(child(dbRef, 'user')).then((snapshot) => {
-    if(snapshot.exists()){
+    if (snapshot.exists()) {
       const users = snapshot.val();
       const userWithEmail = Object.values(users).find(user => user.email === email);
       if (userWithEmail.userType == "administrador") {
