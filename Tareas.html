@@ -134,13 +134,13 @@
     getSortedTasks()
         .then((tasks) => {
             tasks.forEach((task) => {
+                console.log(task.id);
                 const title = task.title;
                 const description = task.description;
                 const dueDate = task.dueDate;
                 const tags = task.tags;
                 const priority = task.priority;
                 const linkedUser = task.linkedUser;
-
                 const newProjectCard = document.createElement("div");
                 newProjectCard.className = "projectCard";
                 newProjectCard.innerHTML = `
@@ -228,10 +228,16 @@
                     } catch (error) {
                         console.error('Ocurrió un error:', error);
                     }
+                    
+                    deleteTask(task.id)
+                        .then(() => {
+                            console.log("Documento eliminado con éxito.");
+                            location.reload();
+                        })
+                        .catch((error) => {
+                            console.error("Error al eliminar el documento:", error);
+                        });
                 });
-
-                // Haz algo con los datos, por ejemplo, imprímelos en la consola
-                console.log(`Title: ${title}, Description: ${description}, Due Date: ${dueDate}`);
             });
         })
         .catch((error) => {

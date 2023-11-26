@@ -169,10 +169,15 @@ export function getSortedTasks() {
   return new Promise(async (resolve, reject) => {
     try {
       const querySnapshot = await getDocs(eventosRef);
-      const tasks = querySnapshot.docs.map(doc => doc.data());
 
-      // Ordenar los documentos por dueDate en orden descendente
-      const sortedTasks = tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+      // Mapea cada documento a un objeto que incluye el id y los datos
+      const tasks = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()  // Spread operator para incluir todos los datos del documento
+      }));
+
+      // Ordena los documentos por dueDate en orden descendente
+      const sortedTasks = tasks.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
 
       resolve(sortedTasks);
     } catch (error) {
