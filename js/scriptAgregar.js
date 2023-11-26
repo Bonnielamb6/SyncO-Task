@@ -6,7 +6,7 @@ import {
     getTask,
     updateTask,
     displayAllUsers,
-    clickEventAllUsers 
+    clickEventAllUsers
 } from "./firebase.js";
 
 let selectedUserEmail;
@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             await saveTask(taskTitle, description, dueDate, priority, tag, linkedUser);
+            sendEmail(linkedUser, taskTitle);
         } catch (error) {
             console.log(error);
         }
@@ -150,9 +151,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const usersContainerId = "userList";
 
     displayAllUsers(usersContainerId).then(() => {
-        clickEventAllUsers("userList", function(userEmail) {
+        clickEventAllUsers("userList", function (userEmail) {
             selectedUserEmail = userEmail
-          });
+            console.log(userEmail);
+        });
     });
+
+    function sendEmail(toEmail, message) {
+
+        // Envía el correo electrónico
+        emailjs.send("service_u4l7y3t", "template_7axdjtj", { to_email: toEmail, message })
+            .then(function (response) {
+                console.log("Correo enviado con éxito", response);
+            })
+            .catch(function (error) {
+                console.error("Error al enviar el correo", error);
+            });
+    }
 
 }); 
