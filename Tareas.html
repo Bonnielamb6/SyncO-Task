@@ -119,8 +119,11 @@
         deleteTask,
         getTask,
         updateTask,
-        getTasksDueInSevenDays
+        getTasksDueInSevenDays,
+        storage
     } from "/js/firebase.js";
+    import { ref, getStorage, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
+
 
     const tasksDueInSevenDays = await getTasksDueInSevenDays();
     console.log(tasksDueInSevenDays);
@@ -166,22 +169,70 @@
                         <div class="task">
                             <h2>${description}</h2>
                         </div>
-                    
+                        
                         <div class="due">
                             <h2>${dueDate}</h2>
+                            <input type="file" name="archivo" id="archivo-${task.id}" accept=".jpg, .jpeg, .png, .pdf">
+                            <button id="enviar-${task.id}" class="send" type="button">Mandar tarea</button>
                         </div>
+                        
+
                     
                     </div>
                 
                 `;
         containerProjectCards.appendChild(newProjectCard);
 
+        const enviarButton = document.getElementById(`enviar-${task.id}`);
+        const fileInput = document.getElementById(`archivo-${task.id}`);
 
+        enviarButton.addEventListener("click", async () => {
+            try {
+                // Obtén una referencia al servicio de almacenamiento de Firebase
+                const storage = getStorage();
+
+                const file = fileInput.files[0];
+
+
+                if (!file) {
+                    console.error('No se seleccionó ningún archivo.');
+                    return;
+                }
+                console.log(storage);
+                const storageRef = ref(storage, `archivos/${file.name}`);
+                const task = uploadBytes(storageRef, file);
+
+                task
+                    .then((snapshot) => {
+                        // Maneja el progreso de carga (opcional)
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log(`Progreso de carga: ${progress}%`);
+                    })
+                    .catch((error) => {
+                        // Maneja errores durante la carga
+                        console.error('Error al subir el archivo:', error);
+                    })
+                    .finally(async () => {
+                        // La carga se ha completado con éxito
+                        console.log('Archivo subido con éxito');
+
+                        // Puedes acceder a la URL del archivo almacenado
+                        const downloadURL = await getDownloadURL(storageRef);
+
+                        // Guarda la información en la base de datos Firestore
+                        saveTask(title, description, dueDate, priority, tags, downloadURL)
+                            .then((docRef) => {
+                                console.log(`Documento añadido con ID: ${docRef.id}`);
+                            })
+                            .catch((error) => {
+                                console.error('Error al añadir documento: ', error);
+                            });
+                    });
+            } catch (error) {
+                console.error('Ocurrió un error:', error);
+            }
+        });
     });
-
-
-
-
 </script>
 
 </html>

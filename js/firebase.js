@@ -11,11 +11,12 @@ import {
   deleteDoc,
   doc,
   getDoc,
-  updateDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"
 
 import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";  
 
 
 // Your web app's Firebase configuration
@@ -34,7 +35,7 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const dbLife = getDatabase(app);
 export const auth = getAuth(app);
-
+export const storage = getStorage(app);
 
 /**
  * Save a New Task in Firestore
