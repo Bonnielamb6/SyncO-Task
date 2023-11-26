@@ -138,7 +138,7 @@
         const dueDate = taskData.dueDate;
         const tags = taskData.tags;
         const priority = taskData.priority;
-
+        const linkedUser = taskData.linkedUser;
         console.log(`Task ID: ${task.id}`);
         console.log(`Title: ${title}`);
         console.log(`Description: ${description}`);
@@ -221,7 +221,7 @@
                         const downloadURL = await getDownloadURL(storageRef);
 
                         // Guarda la información en la base de datos Firestore
-                        saveTaskImage(title, description, dueDate, priority, tags, downloadURL)
+                        saveTaskImage(title, description, dueDate, priority, tags, linkedUser,downloadURL)
                             .then((docRef) => {
                                 console.log(`Documento añadido con ID: ${docRef.id}`);
                             })

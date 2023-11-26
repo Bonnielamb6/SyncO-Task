@@ -48,8 +48,8 @@ export const storage = getStorage(app);
 export const saveTask = (title, description, dueDate, priority, tags, linkedUser) =>
   addDoc(collection(db, "tasks"), { title, description, dueDate, priority, tags, linkedUser });
 
-export const saveTaskImage = (title, description, dueDate, priority, tags, linkedUser) =>
-  addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser });
+export const saveTaskImage = (title, description, dueDate, priority, tags, linkedUser, urlWork) =>
+  addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser , urlWork});
 
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
