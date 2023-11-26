@@ -94,13 +94,9 @@
                 <div class="comments">
                     <div class="commentHead">
                         <h2>Dejar un comentario</h2>
-
-
                     </div>
-
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button>Enviar comentario</button>
-
+                    <textarea name="" id="comentario" cols="30" rows="10"></textarea>
+                    <button id="enviarComentario">Enviar comentario</button>
                 </div>
 
                 <!-- myCompletedTasks start -->
@@ -113,23 +109,6 @@
                     <!-- tasks start -->
                     <div class="user">
                         <ul id="users">
-                            <li>
-                                <span class="userIconName">
-
-                                    <span class="userName">
-                                        Juan
-                                    </span>
-                                </span>
-                            </li>
-                            <li>
-                                <span class="userIconName">
-                                    <span class="userName">
-                                        Pepe
-                                    </span>
-                                </span>
-
-                            </li>
-
                         </ul>
                     </div>
                     <!-- user end -->
@@ -152,12 +131,14 @@
         saveTask,
         deleteTask,
         getTask,
+        saveCheckedTask,
         updateTask,
         getTasksByPriority,
         getTasksDueInSevenDays
     } from "/js/firebase.js";
 
-    const tasksContainer = document.getElementById("users");
+    const enviarComentario = document.getElementById('enviarComentario');
+    const tasksContainer =  document.getElementById('users');
 
     onGetDoneTasks((querySnapshot) => {
 
@@ -165,6 +146,14 @@
 
         querySnapshot.forEach((doc) => {
             const task = doc.data();
+
+            const title = task.title;
+            const description = task.description;
+            const dueDate = task.dueDate;
+            const tags = task.tags;
+            const priority = task.priority;
+            const linkedUser = task.linkedUser;
+            const urlWork = task.urlWork;
 
             tasksContainer.innerHTML += `                
         <li>
@@ -178,6 +167,26 @@
         </li>`;
 
         });
+
+
+    });
+
+
+    enviarComentario.addEventListener('click', async function () {
+        if (selectedUserEmail === undefined) {
+            alert("Debes seleccionar un usuario");
+            return
+        } else {
+            alert("Tarea asignada al correo: " + selectedUserEmail);
+        }
+
+        const comentario = document.getElementById("comentario");
+
+        try {
+            await saveTask(taskTitle, description, dueDate, priority, tag, linkedUser,urlWork,comentario);
+        } catch (error) {
+            console.log(error);
+        }
 
 
     });

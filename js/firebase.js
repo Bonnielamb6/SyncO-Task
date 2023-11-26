@@ -49,7 +49,7 @@ export const saveTask = (title, description, dueDate, priority, tags, linkedUser
   addDoc(collection(db, "tasks"), { title, description, dueDate, priority, tags, linkedUser });
 
 export const saveTaskImage = (title, description, dueDate, priority, tags, linkedUser, urlWork) =>
-  addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser , urlWork});
+  addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser, urlWork });
 
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
@@ -59,6 +59,10 @@ export const onGetDoneTasks = (callback) =>
 
 export const onGetUsers = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
+
+export const saveCheckedTask = (title, description, dueDate, priority, tags, linkedUser, urlWork, comentario) =>
+  addDoc(collection(db, "doneTasks"), { title, description, dueDate, priority, tags, linkedUser, urlWork, comentario });
+
 /**
  * Update an existing Task in Firestore
  * @param {string} id Task ID
