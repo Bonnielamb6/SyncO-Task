@@ -177,7 +177,7 @@ export function getSortedTasks() {
       }));
 
       // Ordena los documentos por dueDate en orden descendente
-      const sortedTasks = tasks.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
+      const sortedTasks = tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
       resolve(sortedTasks);
     } catch (error) {
